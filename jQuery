@@ -5,3 +5,8 @@ $(document).ready(function(){
 
 }); 
 para asegurar que el código jQuery no se ejecutará antes de que se haya cargado la página.
+
+
+The element Selector
+You can select all <p> elements on a page like this:
+<code>$("p") </code>
