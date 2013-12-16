@@ -1,0 +1,7 @@
+Siempre empezar con:
+$(document).ready(function(){
+
+   // jQuery methods go here...
+
+}); 
+para asegurar que el código jQuery no se ejecutará antes de que se haya cargado la página.
