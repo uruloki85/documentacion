@@ -1,3 +1,6 @@
+jQuery
+======
+
 Siempre empezar con:
 $(document).ready(function(){
 
