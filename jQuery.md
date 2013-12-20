@@ -11,15 +11,15 @@ para asegurar que el código jQuery no se ejecutará antes de que se haya cargad
 [Selectores](http://www.w3schools.com/jquery/jquery_selectors.asp)
 ------------
 
-* The element Selector
+* The element Selector<br/>
 You can select all &lt;p> elements on a page like this:
 <pre><code>$("p") </code></pre>
 
-* The #id Selector
+* The #id Selector<br/>
 The jQuery #id selector uses the id attribute of an HTML tag to find the specific element.
 <pre><code>$("#test")</code></pre>
 
-* The .class Selector
+* The .class Selector<br/>
 The jQuery class selector finds elements with a specific class.
 <pre><code>$(".test")</code></pre>
 
