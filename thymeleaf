@@ -1,0 +1,6 @@
+th-utext
+Para texto con formato. Por ejemplo:
+<code>home.welcome=Welcome to our <b>fantastic</b> grocery store!</code>
+Hay que usarlo así:
+<code><p th:utext="#{home.welcome}">Welcome to our grocery store!</p></code>
+Con th:text se printarían por pantalla los tags de html.
