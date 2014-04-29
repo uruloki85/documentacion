@@ -1,0 +1,4 @@
+documentacion
+=============
+
+Información varia.
