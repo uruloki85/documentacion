@@ -1,5 +1,5 @@
-RabbitMQ
-========
+[RabbitMQ](http://www.rabbitmq.com/documentation.html)
+==========
 
 Consultes amb <code>rabbitmqctl</code>
 --------------------------------------
