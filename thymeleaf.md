@@ -11,10 +11,21 @@ Hay que usarlo así:
 <pre><code>&lt;p th:utext="#{home.welcome}">Welcome to our grocery store!&lt;/p></code></pre>
 Si usasemos <code>th:text</code> se printarían por pantalla los tags de html.
 
+Preprocesar expresiones
+-----------------------
+En el siguiente ejemplo primero se evalúa la expresión entre __ (la innerExpression) y luego la expresión englobante (la outerExpression).
+<pre><code>#{outerExpression.__*{innerExpression}__}</code></pre>
+
 Formatear decimales
 -------------------
 Indica el número mínimo de dígitos enteros (1) y el número exacto de dígitos decimales (2), así como el separador de miles (punto) y decimales (coma).
-<pre><code>${#numbers.formatDecimal(num,1,'POINT',2,'COMMA')}</code></pre>
+<pre><code>${#numbers.formatDecimal(numToFormat,1,'POINT',2,'COMMA')}</code></pre>
+
+Formatear fechas
+----------------
+Indica el formato de la fecha.
+<pre><code>*{#dates.format(dateToFormat, 'dd/MM/yyyy')}</code></pre>
+
 
 Estructura en un proyecto Spring Boot
 =====================================
