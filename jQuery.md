@@ -1,4 +1,4 @@
-jQuery
+[jQuery](http://api.jquery.com/)
 ======
 
 Siempre empezar con:
@@ -8,15 +8,15 @@ Siempre empezar con:
 para asegurar que el código jQuery no se ejecutará antes de que se haya cargado la página.
 
 
-[Selectores](http://www.w3schools.com/jquery/jquery_selectors.asp)
+[Selectors](http://www.w3schools.com/jquery/jquery_selectors.asp)
 ------------
 
 * The element Selector<br/>
-You can select all &lt;p> elements on a page like this:
+You can select all <code>&lt;p></code> elements on a page like this:
 <pre><code>$("p") </code></pre>
 
 * The #id Selector<br/>
-The jQuery #id selector uses the id attribute of an HTML tag to find the specific element.
+The jQuery #id selector uses the <b>id</b> attribute of an HTML tag to find the specific element.
 <pre><code>$("#test")</code></pre>
 
 * The .class Selector<br/>
@@ -39,14 +39,13 @@ The next step is to define what should happen when the event fires. You must pas
 });</pre></code>
 
 Most common events:
-* click(): The function is executed when the user clicks on the HTML element.
-* dblclick(): The function is executed when the user double-clicks on the HTML element.
-* mouseenter(): The function is executed when the mouse pointer enters the HTML element.
-* mouseleave(): The function is executed when the mouse pointer leaves the HTML element.
-* mousedown(): The function is executed, when the left mouse button is pressed down, while the mouse is over the HTML element.
-* mouseup(): The function is executed, when the left mouse button is released, while the mouse is over the HTML element.
-* hover(): 
-The hover() method takes two functions and is a combination of the mouseenter() and mouseleave() methods.
+* <code>click()</code>: The function is executed when the user clicks on the HTML element.
+* <code>dblclick()</code>: The function is executed when the user double-clicks on the HTML element.
+* <code>mouseenter()</code>: The function is executed when the mouse pointer enters the HTML element.
+* <code>mouseleave()</code>: The function is executed when the mouse pointer leaves the HTML element.
+* <code>mousedown()</code>: The function is executed, when the left mouse button is pressed down, while the mouse is over the HTML element.
+* <code>mouseup()</code>: The function is executed, when the left mouse button is released, while the mouse is over the HTML element.
+* <code>hover()</code>: The <code>hover()</code> method takes two functions and is a combination of the <code>mouseenter()</code> and <code>mouseleave()</code> methods.
 The first function is executed when the mouse enters the HTML element, and the second function is executed when the mouse leaves the HTML element
 <pre><code>$("#p1").hover(function(){
   alert("You entered p1!");
@@ -54,8 +53,8 @@ The first function is executed when the mouse enters the HTML element, and the s
   function(){
   alert("Bye! You now leave p1!");
 }); </pre></code>
-* focus(): The function is executed when the form field gets focus.
-* blur(): The function is executed when the form field loses focus.
+* <code>focus()</code>: The function is executed when the form field gets focus.
+* <code>blur()</code>: The function is executed when the form field loses focus.
 
 [All available jQuery event methods](http://www.w3schools.com/jquery/jquery_ref_events.asp)
 
