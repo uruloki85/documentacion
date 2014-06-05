@@ -1,11 +1,18 @@
 Spring
 ======
+Fitxer de propietas YAML
+------------------------
+Es poden crear tants fitxers com es vulgui, p.e., un per entorn: <code>application-dsv.yml</code>, <code>application-pre.yml</code> i <code>application-pro.yml</code>. 
+
+Després, al fitxer <code>application.properties</code> s'especifica l'entorn a utilitzar: <code>spring.profiles.active=dsv</code>.
+
 
 Connexió a BDs
 --------------
 
 * Quan s'utilitza més d'una BD, cal especificar el <code>persistanceUnitName</code>. Es pot especificar el nom que es desitji.
-    * Utilitzant una classe Java:
+
+Si s'utilitza una classe Java per configurar:
 ```java
 @Configuration
 @EnableTransactionManagement
@@ -64,7 +71,9 @@ public class PostgreSQLConfiguration {
 	
 }
 ```
-    * Utilitzant un fitxer de configuració XML:
+    
+Si s'utilitza un fitxer de configuració XML:
+    
 ```XML
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence ">http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
