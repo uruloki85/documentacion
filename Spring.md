@@ -6,7 +6,7 @@ Connexió a BDs
 
 * Quan s'utilitza més d'una BD, cal especificar el <code>persistanceUnitName</code>. Es pot especificar el nom que es desitji.
 - Utilitzant una classe Java:
-<code>
+```java
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages="es.upcnet.efactura.repository.sql")
@@ -62,9 +62,9 @@ public class PostgreSQLConfiguration {
 	}
 	
 }
-</code>
+```
 - Utilitzant un fitxer de configuració XML:
-<pre><code>
+```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence ">http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
@@ -82,4 +82,4 @@ public class PostgreSQLConfiguration {
         </properties>
     </persistence-unit>
 </persistence>
-</code></pre>
+```
