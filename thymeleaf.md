@@ -33,3 +33,11 @@ Estructura en un proyecto Spring Boot
 El proyecto puede tener un solo fichero <code>messages.properties</code> y/o bien puede haber uno por HTML. En cualquier caso, si se quiere hacer uso de la internalización el nombre del fichero deberá ser <code>messages<b>_es</b>.properties</code>, <code>messages<b>_ca</b>.properties</code>, etc.
 * <code>src/main/resources/<b>templates</b></code>: *.html.
 * <code>src/main/resources/<b>static</b></code>: *.js, *.css, *.png, etc. Pueden crearse subcarpetas.
+
+Añadir las siguientes líneas en <code>application.properties</code> para que servidor embebido se entere de los cambios en "caliente" (así no hay que redesplegar):
+```
+# Allow Thymeleaf templates to be reloaded at dev time
+spring.thymeleaf.cache: false
+server.tomcat.access_log_enabled: true
+server.tomcat.basedir: target/tomcat
+```
