@@ -5,7 +5,7 @@ Connexió a BDs
 --------------
 
 * Quan s'utilitza més d'una BD, cal especificar el <code>persistanceUnitName</code>. Es pot especificar el nom que es desitji.
-- Utilitzant una classe Java:
+    * Utilitzant una classe Java:
 ```java
 @Configuration
 @EnableTransactionManagement
@@ -36,7 +36,7 @@ public class PostgreSQLConfiguration {
 		factory.setJpaVendorAdapter(vendorAdapter);
 		factory.setJpaProperties(additionalProperties());
 		//Quan hi ha més d'una connexió a BD, cal especificar la persistenceUnitName:
-		<b>factory.setPersistenceUnitName("postgresDB");</b>
+		factory.setPersistenceUnitName("postgresDB");
 		return factory;
 	}
 	
@@ -63,7 +63,7 @@ public class PostgreSQLConfiguration {
 	
 }
 ```
-- Utilitzant un fitxer de configuració XML:
+    * Utilitzant un fitxer de configuració XML:
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence ">http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
@@ -82,4 +82,37 @@ public class PostgreSQLConfiguration {
         </properties>
     </persistence-unit>
 </persistence>
+```
+
+En el cas de treballar amb MongDB, no sé com s'estableix aquest nom! Si conviuen una mongo i una SQL, establint només el ```persistanceUnitName``` de la SQL ja n'hi ha prou per a que funcioni correctament.
+
+* També cal especificar aquest nom a les entitats (```@Entity```) mitjançant l'anotació ```@PersistenceUnit```:
+```java
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name="factura", schema = "public")
+@PersistenceUnit(name="postgresDB")
+public class Factura {
+
+    @Id
+    @SequenceGenerator(name = "facturaGen", sequenceName = "seq_factura")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "facturaGen")
+    @Column(name = "id")
+	private Long id;
+
+	@NotNull
+	@Column(length = 1, nullable = false)
+	private String validada;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataValidacio;
+	
+	@Version
+	private Integer version;
+	
+}
 ```
