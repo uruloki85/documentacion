@@ -31,7 +31,8 @@ public class PostgreSQLConfiguration {
 		vendorAdapter.setGenerateDdl(true);
 
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		factory.setPackagesToScan("es.upcnet.efactura.repository.sql","es.upcnet.efactura.model.sql");
+		//Package on es troben les entitats
+		factory.setPackagesToScan("es.upcnet.efactura.model.sql");
 		factory.setDataSource(dataSource());
 		factory.setJpaVendorAdapter(vendorAdapter);
 		factory.setJpaProperties(additionalProperties());
@@ -64,7 +65,7 @@ public class PostgreSQLConfiguration {
 }
 ```
     * Utilitzant un fitxer de configuració XML:
-```xml
+```XML
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence ">http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="persistenceUnit" transaction-type="RESOURCE_LOCAL">
