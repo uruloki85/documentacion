@@ -156,7 +156,9 @@ Añadir en la cabecera Html:
   	</head>
 </html>
 ```
+
 	Hay que añadir el token CSRF en todas las llamadas Ajax:
+	
 ```javascript
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
@@ -171,4 +173,5 @@ $.ajax({
 	}
 })
 ```
-	Si no se incluye el token, el servidor devolverá el error *403 Forbidden*.
+
+Si no se incluye el token, el servidor devolverá el error *403 Forbidden*.
