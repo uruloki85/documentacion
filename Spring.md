@@ -1,6 +1,6 @@
 #Spring
 
-###Fitxer de propietas YAML
+###Fitxer de propietats YAML
 Es poden crear tants fitxers com es vulgui, p.e., un per entorn: <code>application-dsv.yml</code>, <code>application-pre.yml</code> i <code>application-pro.yml</code>. 
 
 Després, al fitxer <code>application.properties</code> s'especifica l'entorn a utilitzar: <code>spring.profiles.active=dsv</code>.
@@ -126,7 +126,7 @@ public class Factura {
 
 ###[Protección contra ataques CSRF](http://docs.spring.io/spring-security/site/docs/3.2.4.RELEASE/reference/htmlsingle/#csrf)
 
-1. La protección por CSRF está activa por defecto cuando se configura Srping Security con clases Java.
+1. La protección por CSRF está activa por defecto cuando se configura Spring Security con clases Java.
 2. Si no se quiere usar, desactivar mediante (en nuestro caso ese método esta en la clase que configura el CAS):
 ```java
 @EnableWebSecurity
@@ -140,7 +140,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 ```
 3. Para hacer submits del tag <code>&lt;form></code>, si se usa Spring MVC o Thymeleaf y se sustituye la anotación <code>@EnableWebSecurity</code> por <code>@EnableWebMvcSecurity</code>, el token CSRF se incluye automáticamente.
 
-Pero, si se hace esto y el submit es por GET (método por defecto) el token CSRF se verá en la URL. Para evitar esto, hay que especificar que se use el método POST:
+	Pero, si se hace esto y el submit es por GET (método por defecto) el token CSRF se verá en la URL. Para evitar esto, hay que especificar que se use el método POST:
 ```html
 <form method="POST" id="cercar-factura-form" action="cercador.html" data-th-action="@{/}"></form>
 ```
@@ -154,8 +154,9 @@ Añadir en la cabecera Html:
 		<meta name="_csrf_header" data-th-content="${_csrf.headerName}"/>
     		<!-- ... -->
   	</head>
+</html>
 ```
-Hay que añadir el token CSRF en todas las llamadas Ajax:
+	Hay que añadir el token CSRF en todas las llamadas Ajax:
 ```javascript
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
@@ -170,4 +171,4 @@ $.ajax({
 	}
 })
 ```
-Si no se incluye el token, el servidor devolverá el error 403 Forbidden.
+	Si no se incluye el token, el servidor devolverá el error *403 Forbidden*.
