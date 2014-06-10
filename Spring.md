@@ -157,7 +157,7 @@ Añadir en la cabecera Html:
 </html>
 ```
 
-	Hay que añadir el token CSRF en todas las llamadas Ajax:
+Hay que añadir el token CSRF en todas las llamadas Ajax:
 	
 ```javascript
 var token = $("meta[name='_csrf']").attr("content");
