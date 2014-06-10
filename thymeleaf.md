@@ -26,6 +26,17 @@ Formatear fechas
 Indica el formato de la fecha.
 <pre><code>*{#dates.format(dateToFormat, 'dd/MM/yyyy')}</code></pre>
 
+Paso de parámetros hacia Javascript
+-----------------------------------
+Se pueden crear todos los atributos que se quiera utilizando <code>data-th-attr</code> y separados por comas. 
+
+Con ello conseguimos que se caclule el valor en tiempo de ejecución (si escribimos directamente <code>data-id-factura=${facturaConfrontador.idFactura}</code> como haríamos en una JSP, no se interpretará como una instrucción de Thymeleaf y en tiempo de ejecución la variable <code>data-id-factura</code> contendría el texto <code>${facturaConfrontador.idFactura}</code> en lugar de el valor contenido):
+```html
+<button type="button" class="btn btn-primary js-valida" data-th-text="#{boto.acceptar}" 
+				data-th-if="${factura.validada eq 'P'}"
+				data-th-attr="data-id-factura=${facturaConfrontador.idFactura}, data-url=@{/visor/valida}, data-acceptar=true">Aceptar</button>
+```
+* <code>data-th-if</code>: Sólo se mostrará el elemento html si se cumple la condición.
 
 Estructura en un proyecto Spring Boot
 =====================================
