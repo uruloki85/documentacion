@@ -126,3 +126,51 @@ public class Factura {
 	
 }
 ```
+
+[Protección contra ataques CSRF](http://docs.spring.io/spring-security/site/docs/3.2.4.RELEASE/reference/htmlsingle/#csrf)
+------------------------------
+1. La protección por CSRF está activa por defecto cuando se configura la app con clases Java.
+2. Si no se quiere usar, desactivar mediante (en nuestro caso ese método esta en la clase que configura el CAS):
+```java
+@EnableWebSecurity
+@Configuration
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
+	}
+}
+```
+3. Para hacer submits del tag <pre><code><form></code></pre>, si se usa Spring MVC o Thymeleaf y se sustituye la anotación <code>@EnableWebSecurity</code> por <code>@EnableWebMvcSecurity</code>, el token CSRF se incluye automáticamente.
+
+Pero, si se hace esto y el submit es por GET (método por defecto) el token CSRF se verá en la URL. Para evitar esto, hay que especificar que se use el método POST:
+```html
+<form method="POST" id="cercar-factura-form" action="cercador.html" data-th-action="@{/}"></form>
+```
+4. Para peticiones Ajax y Json que sean PATCH, POST, PUT o DELETE
+Añadir en la cabecera Html:
+```html
+<html>
+	<head>
+		<meta name="_csrf" data-th-content="${_csrf.token}"/>
+		<!-- default header name is X-CSRF-TOKEN -->
+		<meta name="_csrf_header" data-th-content="${_csrf.headerName}"/>
+    		<!-- ... -->
+  	</head>
+```
+Hay que añadir el token CSRF en todas las llamadas Ajax:
+```javascript
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$.ajax({
+	url: ...,
+	cache: false,
+	dataType: "json",
+	type: "POST",
+	data: { ... },
+	beforeSend: function(jqXHR, settings) {
+		jqXHR.setRequestHeader(header, token);
+	}
+})
+```
+Si no se incluye el token, el servidor devolverá el error 403 Forbidden.
