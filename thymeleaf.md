@@ -36,7 +36,32 @@ Con ello conseguimos que se caclule el valor en tiempo de ejecución (si escribi
 				data-th-if="${factura.validada eq 'P'}"
 				data-th-attr="data-id-factura=${facturaConfrontador.idFactura}, data-url=@{/visor/valida}, data-acceptar=true">Aceptar</button>
 ```
+
 * <code>data-th-if</code>: Sólo se mostrará el elemento html si se cumple la condición.
+ 
+Hecho esto, podremos recupear los valores desde Javascript:
+```javascript
+function validaFactura(event) {
+	var contextBaseUrl = $(event.target).data('url');
+	var idFactura = $(event.target).data('id-factura');
+	var acceptar = $(event.target).data('acceptar');
+	
+	$.ajax({
+		url: contextBaseUrl,
+		cache: false,
+		dataType: "json",
+		type: "POST",
+		data: {
+			idFactura: idFactura,
+	        acceptar: acceptar
+		}
+	}).done(function () {
+		alert("done");
+	}).fail(function(jqXHR, textStatus, errorThrown) {
+		alert("fail: "+ textStatus + ", " + errorThrown);
+	});
+}
+```
 
 Estructura en un proyecto Spring Boot
 =====================================
