@@ -30,7 +30,7 @@ Paso de parámetros hacia Javascript
 -----------------------------------
 Se pueden crear todos los atributos que se quiera utilizando <code>data-th-attr</code> y separados por comas. 
 
-Con ello conseguimos que se caclule el valor en tiempo de ejecución (si escribimos directamente <code>data-id-factura=${facturaConfrontador.idFactura}</code> como haríamos en una JSP, no se interpretará como una instrucción de Thymeleaf y en tiempo de ejecución la variable <code>data-id-factura</code> contendría el texto <code>${facturaConfrontador.idFactura}</code> en lugar de el valor contenido):
+Con ello conseguiremos que se caclule el valor en tiempo de ejecución (si escribimos <code>data-id-factura=${facturaConfrontador.idFactura}</code> como haríamos en una JSP, no se interpretará como una instrucción de Thymeleaf y en tiempo de ejecución la variable <code>data-id-factura</code> contendrá el texto <code>${facturaConfrontador.idFactura}</code> en lugar del valor contenido):
 ```html
 <button type="button" class="btn btn-primary js-valida" data-th-text="#{boto.acceptar}" 
 				data-th-if="${factura.validada eq 'P'}"
