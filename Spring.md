@@ -259,28 +259,24 @@ Si utilitzem XMLs per configurar:
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 	http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    	<context:property-placeholder location="classpath*:META-INF/spring/*.properties"/>
+	<context:property-placeholder location="classpath*:META-INF/spring/*.properties"/>
 
 	<bean id="serveiWebPersonesIdentitat"
 		class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
-		<property name="serviceInterface"
-			value="es.upcnet.tarifes.ws.client.identitat.persones.Personesv4" />
+		<property name="serviceInterface" value="es.upcnet.tarifes.ws.client.identitat.persones.Personesv4" />
 		<property name="wsdlDocumentUrl" value="${ws.identitat.persones}" />
-		<property name="namespaceUri"
-			value="http://soa.identitatdigital.upc.edu/Personesv4" />
+		<property name="namespaceUri" value="http://soa.identitatdigital.upc.edu/Personesv4" />
 		<property name="serviceName" value="PersonaServiceV4Service" />
 		<property name="portName" value="Personesv4Port" />
 		<property name="handlerResolver" ref="wsSecurityHandlerResolverTarifes" />
 		<property name="lookupServiceOnStartup" value="false" />
 	</bean>	
 
-	<bean id="wsSecurityHandlerResolverTarifes"
-		class="es.upcnet.ws.handler.WsSecurityHandlerResolver">
+	<bean id="wsSecurityHandlerResolverTarifes" class="es.upcnet.ws.handler.WsSecurityHandlerResolver">
 		<property name="securityHandler" ref="securityHandlerTarifes" />
 	</bean>
 
-	<bean id="securityHandlerTarifes"
-		class="es.upcnet.ws.handler.WsSecurityHandler">
+	<bean id="securityHandlerTarifes" class="es.upcnet.ws.handler.WsSecurityHandler">
 		<property name="username" value="${ws.sap.tarifes.username}" />
 		<property name="password" value="${ws.sap.tarifes.password}" />
 	</bean>
