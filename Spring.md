@@ -242,6 +242,51 @@ public class WSConfiguration {
 	}
 }
 ```
+Si utilitzem XMLs per configurar:
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd         
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd         
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd         
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd         
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+    	<context:property-placeholder location="classpath*:META-INF/spring/*.properties"/>
+
+	<bean id="serveiWebPersonesIdentitat"
+		class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+		<property name="serviceInterface"
+			value="es.upcnet.tarifes.ws.client.identitat.persones.Personesv4" />
+		<property name="wsdlDocumentUrl" value="${ws.identitat.persones}" />
+		<property name="namespaceUri"
+			value="http://soa.identitatdigital.upc.edu/Personesv4" />
+		<property name="serviceName" value="PersonaServiceV4Service" />
+		<property name="portName" value="Personesv4Port" />
+		<property name="handlerResolver" ref="wsSecurityHandlerResolverTarifes" />
+		<property name="lookupServiceOnStartup" value="false" />
+	</bean>	
+
+	<bean id="wsSecurityHandlerResolverTarifes"
+		class="es.upcnet.ws.handler.WsSecurityHandlerResolver">
+		<property name="securityHandler" ref="securityHandlerTarifes" />
+	</bean>
+
+	<bean id="securityHandlerTarifes"
+		class="es.upcnet.ws.handler.WsSecurityHandler">
+		<property name="username" value="${ws.sap.tarifes.username}" />
+		<property name="password" value="${ws.sap.tarifes.password}" />
+	</bean>
+ 
+</beans>
+```
 Creem el servei on s'injectarà el **bean** que acabem de crear. Es necessari utilitzar l'anotació <code>@Resource</code> per tal d'especificar el nom del bean.
 
 També és recomanable indicar el nom del servei (per convenció, el nom de la classe amb la primera lletra en minúscula).
