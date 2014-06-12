@@ -260,8 +260,7 @@ Si utilitzem XMLs per configurar:
 
 	<context:property-placeholder location="classpath*:META-INF/spring/*.properties"/>
 
-	<bean id="serveiWebPersonesIdentitat"
-		class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
+	<bean id="serveiWebPersonesIdentitat" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
 		<property name="serviceInterface" value="es.upcnet.tarifes.ws.client.identitat.persones.Personesv4" />
 		<property name="wsdlDocumentUrl" value="${ws.identitat.persones}" />
 		<property name="namespaceUri" value="http://soa.identitatdigital.upc.edu/Personesv4" />
