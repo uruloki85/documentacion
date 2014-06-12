@@ -227,7 +227,7 @@ public class PersonaIdentitatHelperWS implements PersonaIdentitatHelper {
 
 	@Override
 	public Integer obtenirIdPersona(String commonName) {
-		
+		// Invocació del servei
 		ObtenirDadesPersonaRespostaV6 dadesPersona = personesv4.obtenirDadesPersona(null, commonName, null);
 		
 		return dadesPersona.getIdGauss();
