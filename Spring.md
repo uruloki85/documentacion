@@ -210,7 +210,7 @@ public class WSConfiguration {
 	@Autowired
 	private PersonaIdentitatWSProperties personaIdentitatWSProperties;
 	
-	@Bean
+	@Bean(name = "serveiWebPersonesIdentitat")
 	public JaxWsPortProxyFactoryBean serveiWebPersonesIdentitat() throws MalformedURLException {
 		
 		JaxWsPortProxyFactoryBean proxy = new JaxWsPortProxyFactoryBean();
