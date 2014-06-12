@@ -173,6 +173,33 @@ $.ajax({
 ```
 Si no se incluye el token, el servidor devolverá el error *403 Forbidden*.
 
+###Generació del client de WS
+Creació automàtica del client d'un web service a partir del WSDL en el <code>pom.xml</code>:
+```xml
+<plugin>
+    <groupId>org.jvnet.jax-ws-commons</groupId>
+	<artifactId>jaxws-maven-plugin</artifactId>
+	<version>2.2</version>
+	<executions>
+		<execution>
+			<id>persones-identitat</id>
+			<goals>
+				<goal>wsimport</goal>
+			</goals>
+			<configuration>
+				<packageName>es.upcnet.efactura.ws.client.identitat.persones</packageName>
+				<target>2.0</target>
+				<wsdlUrls>
+				    <wsdlUrl>https://bus-soades.upc.edu/GestioIdentitat/Personesv4?wsdl</wsdlUrl>
+				</wsdlUrls>
+				<keep>true</keep>
+				<xnocompile>false</xnocompile>
+			</configuration>
+		</execution>
+	</executions>
+</plugin>
+```
+
 ###Utilitzar un client de WS generat amb JAX-WS
 
 Creem el **bean** que s'injectarà al codi amb la configuració corresponent del web service:
