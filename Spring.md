@@ -211,10 +211,9 @@ public class WSConfiguration {
 	private PersonaIdentitatWSProperties personaIdentitatWSProperties;
 	
 	@Bean(name = "serveiWebPersonesIdentitat")
-	public JaxWsPortProxyFactoryBean serveiWebPersonesIdentitat() throws MalformedURLException {
+	public Personesv4 serveiWebPersonesIdentitat() throws MalformedURLException {
 		
 		JaxWsPortProxyFactoryBean proxy = new JaxWsPortProxyFactoryBean();
-		// Interface del client del servei generat amb JAX-WS
 		proxy.setServiceInterface(Personesv4.class);
 		proxy.setWsdlDocumentUrl(new URL(personaIdentitatWSProperties.getWsdlUrl()));
 		proxy.setNamespaceUri(PersonaIdentitatWSProperties.NAMESPACE_URI);
@@ -223,7 +222,7 @@ public class WSConfiguration {
 		proxy.setHandlerResolver(getHandlerResolver());
 		proxy.setLookupServiceOnStartup(false);
 		
-		return proxy;
+		return proxy.createJaxWsService().getPort(Personesv4.class);
 	}
 	
 	private WsSecurityHandlerResolver getHandlerResolver() {
