@@ -172,3 +172,66 @@ $.ajax({
 })
 ```
 Si no se incluye el token, el servidor devolverá el error *403 Forbidden*.
+
+###Utilitzar un client de WS generat amb JAX-WS
+
+Creem el **bean** que s'injectarà al codi amb la configuració corresponent del web service:
+```java
+@Configuration
+public class WSConfiguration {
+	
+	@Autowired
+	private PersonaIdentitatWSProperties personaIdentitatWSProperties;
+	
+	@Bean
+	public JaxWsPortProxyFactoryBean serveiWebPersonesIdentitat() throws MalformedURLException {
+		
+		JaxWsPortProxyFactoryBean proxy = new JaxWsPortProxyFactoryBean();
+		// Interface del client del servei generat amb JAX-WS
+		proxy.setServiceInterface(Personesv4.class);
+		proxy.setWsdlDocumentUrl(new URL(personaIdentitatWSProperties.getWsdlUrl()));
+		proxy.setNamespaceUri(PersonaIdentitatWSProperties.NAMESPACE_URI);
+		proxy.setServiceName(PersonaIdentitatWSProperties.SERVICE_NAME);
+		proxy.setPortName(PersonaIdentitatWSProperties.PORT_NAME);
+		proxy.setHandlerResolver(getHandlerResolver());
+		proxy.setLookupServiceOnStartup(false);
+		
+		return proxy;
+	}
+	
+	private WsSecurityHandlerResolver getHandlerResolver() {
+		WsSecurityHandlerResolver handlerResolver = new WsSecurityHandlerResolver();
+		handlerResolver.setSecurityHandler(getSecurityHandler());
+		
+		return handlerResolver;
+	}
+
+	private WsSecurityHandler getSecurityHandler() {
+		WsSecurityHandler securityHandler = new WsSecurityHandler();
+		securityHandler.setUsername(personaIdentitatWSProperties.getUsername());
+		securityHandler.setPassword(personaIdentitatWSProperties.getPassword());
+		
+		return securityHandler;
+	}
+}
+```
+Creem el servei on s'injectarà el **bean** que acabem de crear. Es necessari utilitzar l'anotació <code>@Resource</code> per tal d'especificar el nom del bean.
+
+També és recomanable indicar el nom del servei (per convenció, el nom de la classe amb la primera lletra en minúscula).
+```java
+@Service("personaIdentitatHelperWS")
+public class PersonaIdentitatHelperWS implements PersonaIdentitatHelper {
+
+	@Resource(name = "serveiWebPersonesIdentitat")
+	private Personesv4 personesv4;
+
+	@Override
+	public Integer obtenirIdPersona(String commonName) {
+		
+		ObtenirDadesPersonaRespostaV6 dadesPersona = personesv4.obtenirDadesPersona(null, commonName, null);
+		
+		return dadesPersona.getIdGauss();
+	}
+	
+}
+```
