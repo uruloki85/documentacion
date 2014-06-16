@@ -101,5 +101,11 @@ public class DateTimeFormatterConfiguration {
 ```
 En este ejemplo hemos conseguido formatear una variable de tipo <code>DateTime</code> (Thymeleaf solo trae funciones propias para formatear los tipos <code>Date</code> y <code>Calendar</code>.
 
+También es posible acceder a clases y métodos:
+```html
+<span data-th-text="T(es.upcnet.efactura.enums.Estat).PENDENT.codi}">P</span>
+```
+Donde <code>Estat</code> es una enumeración.
+
 Más posiblidades de Thymeleaf en http://doanduyhai.wordpress.com/2012/04/14/spring-mvc-part-iv-thymeleaf-advanced-usage/
 
