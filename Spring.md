@@ -301,3 +301,54 @@ public class PersonaIdentitatHelperWS implements PersonaIdentitatHelper {
 	
 }
 ```
+
+###Gestionar diversos idiomes
+Primer cal configurar Spring per a que sigui possible canviar el <code>locale</code> de l'aplicació:
+```java
+/**
+ * Configuració per a que l'aplicació gestioni més d'un idioma. 
+ *
+ */
+@Configuration
+public class LocaleConfiguration extends WebMvcConfigurerAdapter {
+	
+	/**
+	 * Permet a l'aplicació determinar quin és el locale actual.
+	 * 
+	 * @return
+	 */
+	@Bean
+	public LocaleResolver localeResolver() {
+	    SessionLocaleResolver slr = new SessionLocaleResolver();
+	    slr.setDefaultLocale(new Locale("ca", "ES"));
+	    return slr;
+	}
+	
+	/**
+	 * Interceptor responsable de canviar el locale actual.
+	 * 
+	 * @return
+	 */
+	@Bean
+	public LocaleChangeInterceptor localeChangeInterceptor() {
+	    LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+	    lci.setParamName("lang");
+	    return lci;
+	}
+	
+	/**
+	 * Per a que l'interceptor tingui efecte, l'afegim al registre d'interceptor
+	 * de l'aplicació.
+	 * 
+	 * @param registry
+	 */
+	@Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
+}
+```
+Fet això, cal crear els fitxers <code>message_es.properties</code> i <code>message_ca.properties</code> (pels locales castellà i català) i si concatenem http://localhost:8080/visor/3?<b>lang=ca</b> l'aplicació ja canvia automàticament d'un fitxer a l'altre.
+
+Ara, per a que l'usuari pugui canviar l'idioma a voluntat, cal fer el següent:
+
