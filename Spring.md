@@ -350,5 +350,16 @@ public class LocaleConfiguration extends WebMvcConfigurerAdapter {
 ```
 Fet això, cal crear els fitxers <code>message_es.properties</code> i <code>message_ca.properties</code> (pels locales castellà i català) i si concatenem **lang=ca** a la URL *http://localhost:8080/visor/3?lang=ca* l'aplicació ja canvia automàticament d'un fitxer a l'altre.
 
-Ara, per a que l'usuari pugui canviar l'idioma a voluntat, cal fer el següent:
-
+Ara, per a que l'usuari pugui canviar l'idioma a voluntat, podem afegir el següent (en el cas d'emprar Thymeleaf) menú a l'interfície d'usuari:
+```html
+<div class="dropdown idioma">
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownIdioma">
+		<span data-th-utext="#{menu.idioma}">Idioma</span>
+		<b class="caret"></b>
+	</a>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownIdioma">
+		<li><a href="lang=ca" data-th-href="'?lang='+#{menu.idioma.locale.ca}" data-th-utext="#{menu.idioma.catala}">Catalán</a></li>
+		<li><a href="lang=es" data-th-href="'?lang='+#{menu.idioma.locale.es}" data-th-utext="#{menu.idioma.castella}">Castellano</a></li>
+	</ul>
+</div>
+```
