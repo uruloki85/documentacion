@@ -348,7 +348,7 @@ public class LocaleConfiguration extends WebMvcConfigurerAdapter {
     }
 }
 ```
-Fet això, cal crear els fitxers <code>message_es.properties</code> i <code>message_ca.properties</code> (pels locales castellà i català) i si concatenem http://localhost:8080/visor/3?<b>lang=ca</b> l'aplicació ja canvia automàticament d'un fitxer a l'altre.
+Fet això, cal crear els fitxers <code>message_es.properties</code> i <code>message_ca.properties</code> (pels locales castellà i català) i si concatenem **lang=ca** a la URL, p.e. http://localhost:8080/visor/3?lang=ca, l'aplicació ja canvia automàticament d'un fitxer a l'altre.
 
 Ara, per a que l'usuari pugui canviar l'idioma a voluntat, cal fer el següent:
 
