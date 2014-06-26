@@ -405,13 +405,11 @@ Per a utilitzar-lo amb una mongoDB cal afegir les següents dependències i el p
 		</plugins>
 	</build>
 ```
-Això detectarà les classes anotades amb <code>@Document</code> i generarà unes altres a la carpeta indicada (<code>target/generated-sources/java</code>).
+Això detectarà les classes anotades amb <code>@Document</code> i generarà unes altres a la carpeta indicada (<code>target/generated-sources/java</code>, és molt possible que l'Eclipse importi aquesta carpeta automàticament, si no, cal afegir-la manualment al *Build path*).
+
 Fet això, caldrà que el repositori extengui la classe <code>QueryDslPredicateExecutor</code>:
 ```java
-public interface FacturaConfrontadorRepository extends 
-		MongoRepository<FacturaConfrontador, BigInteger>,
-		QueryDslPredicateExecutor<FacturaConfrontador> {
-		
+public interface FacturaConfrontadorRepository extends MongoRepository<FacturaConfrontador, BigInteger>, QueryDslPredicateExecutor<FacturaConfrontador> {
 		
 }
 ```
