@@ -409,7 +409,9 @@ Això detectarà les classes anotades amb <code>@Document</code> i generarà une
 
 Fet això, caldrà que el repositori extengui la classe <code>QueryDslPredicateExecutor</code>:
 ```java
-public interface FacturaConfrontadorRepository extends MongoRepository<FacturaConfrontador, BigInteger>, QueryDslPredicateExecutor<FacturaConfrontador> {
+@Repository
+public interface FacturaConfrontadorRepository extends MongoRepository<FacturaConfrontador, BigInteger>, 
+	QueryDslPredicateExecutor<FacturaConfrontador> {
 		
 }
 ```
