@@ -363,3 +363,85 @@ Ara, per a que l'usuari pugui canviar l'idioma a voluntat, podem afegir el segü
 	</ul>
 </div>
 ```
+###QueryDSL
+Per a utilitzar-lo amb una mongoDB cal afegir les següents dependències i el plugin al nostre <code>pom.xml</code>:
+```xml
+
+	<dependencies>
+		<!-- ... -->
+		<!-- QueryDSL -->
+		<dependency>
+		  <groupId>com.mysema.querydsl</groupId>
+		  <artifactId>querydsl-apt</artifactId>
+		  <version>${querydsl.version}</version>
+		  <scope>provided</scope>
+		</dependency>    
+		<dependency>
+		  <groupId>com.mysema.querydsl</groupId>
+		  <artifactId>querydsl-mongodb</artifactId>
+		  <version>${querydsl.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- ... -->
+			<plugin>
+		        <groupId>com.mysema.maven</groupId>
+		        <artifactId>apt-maven-plugin</artifactId>
+		        <version>1.1.1</version>
+		        <executions>
+		          <execution>
+		            <goals>
+		              <goal>process</goal>
+		            </goals>
+		            <configuration>
+		              <outputDirectory>target/generated-sources/java</outputDirectory>
+		              <processor>org.springframework.data.mongodb.repository.support.MongoAnnotationProcessor</processor>
+		            </configuration>
+		          </execution>
+		        </executions>
+		      </plugin>
+		</plugins>
+	</build>
+```
+Això detectarà les classes anotades amb <code>@Document</code> i generarà unes altres a la carpeta indicada (<code>target/generated-sources/java</code>).
+Fet això, caldrà que el repositori extengui la classe <code>QueryDslPredicateExecutor</code>:
+```java
+public interface FacturaConfrontadorRepository extends 
+		MongoRepository<FacturaConfrontador, BigInteger>,
+		QueryDslPredicateExecutor<FacturaConfrontador> {
+		
+		
+}
+```
+Un exemple d'utilització és:
+```java
+@Log4j
+@Service("facturaConfrontadorServiceImpl")
+public class FacturaConfrontadorServiceImpl implements FacturaConfrontadorService {
+	
+	@Autowired
+	private FacturaConfrontadorRepository facturaConfrontadorRepository;
+
+	@Override
+	public List<FacturaConfrontador> obteFacturesPerIdPersonaOIdCentreGestorIValidada(
+			String idPersona, Integer idCentreGestor, Estat... validada) {
+		
+		QFacturaConfrontador factura = QFacturaConfrontador.facturaConfrontador;
+		BooleanExpression ambIdPersonaOIdCentreGestor = null;
+		if(StringUtils.isNotEmpty(idPersona)) {
+			ambIdPersonaOIdCentreGestor = factura.idPersona.eq(idPersona);
+		} else if (idCentreGestor != null) {
+			ambIdPersonaOIdCentreGestor = factura.idCentreGestor.eq(idCentreGestor);
+		}
+		BooleanExpression ambEstat = factura.validada.in(validada);
+		
+		Iterable<FacturaConfrontador> llistaFactures = facturaConfrontadorRepository
+				.findAll(ambIdPersonaOIdCentreGestor.and(ambEstat),
+						factura.dataValidacio.desc());
+		
+		return Lists.newArrayList(llistaFactures);
+	}
+}
+```
