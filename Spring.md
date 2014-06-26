@@ -350,6 +350,8 @@ public class LocaleConfiguration extends WebMvcConfigurerAdapter {
 ```
 Fet això, cal crear els fitxers <code>message_es.properties</code> i <code>message_ca.properties</code> (pels locales castellà i català) i si concatenem **lang=ca** a la URL *http://localhost:8080/visor/3?lang=ca* l'aplicació ja canvia automàticament d'un fitxer a l'altre.
 
+*NOTA*: Si tenim problemes a l'hora de mostrar l'idioma principal (p. e. si sel·leccionem l'idioma secundari i després tornem al principal, el navegador no ens mostra la pàgina de l'aplicació sinó la pàgina per defecte del tomcat) se soluciona eliminant la cua **_ca** del nom del fitxer (<code>message_ca.properties</code> passaria a <code>message.properties</code>).
+
 Ara, per a que l'usuari pugui canviar l'idioma a voluntat, podem afegir el següent (en el cas d'emprar Thymeleaf) menú a l'interfície d'usuari:
 ```html
 <div class="dropdown idioma">
