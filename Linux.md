@@ -5,7 +5,7 @@ Informació d'interès.
 ```
 sudo netstat -tapen
 ```
-L'opció <code>tapen</code> proporciona informació sobre el procés que està utilitzant el port.
+L'opció <code>-tapen</code> proporciona informació sobre el procés que està utilitzant el port.
 
 Així, si volem saber quina app està utilitzant un port determinat, hem d'executar:
 ```
