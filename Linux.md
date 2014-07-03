@@ -1,7 +1,7 @@
 #Linux
 Informació d'interès.
 
-* Saber quins ports s'estan utilitzant:
+###Ports utilitzats
 ```
 sudo netstat -tapen
 ```
