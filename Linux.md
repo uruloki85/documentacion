@@ -1,10 +1,10 @@
 #Linux
 Informació d'interès.
 
-###Ports utilitzats: netstat
-Proporciona informació dels ports ocupats.
+###netstat
+Proporciona informació dels **ports ocupats**.
 
-L'opció <code>-tapen</code> proporciona informació sobre el procés (pid i nom) que està utilitzant el port.
+Amb l'opció <code>-tapen</code> donarà informació sobre el procés (pid i nom) concret que està utilitzant cada port.
 
 Així, si volem saber quina app està utilitzant un port determinat, hem d'executar:
 ```
