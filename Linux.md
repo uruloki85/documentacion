@@ -1,6 +1,13 @@
 #Linux
 Informació d'interès.
 
+###curl
+Per enviar requests:
+```
+curl -X PUT -d level=INFO localhost:9400/notificationservice/v1/logs
+```
+
+
 ###netstat
 Proporciona informació dels **ports ocupats**.
 
