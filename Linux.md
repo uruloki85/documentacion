@@ -4,11 +4,12 @@ Informació d'interès.
 ###curl
 Per enviar requests:
 ```
-curl -X PUT -d level=INFO localhost:9400/notificationservice/v1/logs
+curl -X PUT --cookie="ega.services.session.id=1" -d level=INFO localhost:9400/notificationservice/v1/logs
 ```
 Opció:
-- -X: per indicar el tipus de mètode.
-- -d: per indicar paràmetres. Si n'hi ha diversos, cada un haurà d'anar precedits pel flag.
+- **-X**: per indicar el tipus de mètode.
+- **-d**: per indicar paràmetres. Si n'hi ha diversos, cada un haurà d'anar precedits pel flag.
+- **--cookie**: per indicar una cookie.
 
 
 ###netstat
