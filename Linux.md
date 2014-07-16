@@ -7,8 +7,8 @@ Per enviar requests:
 curl -X PUT -d level=INFO localhost:9400/notificationservice/v1/logs
 ```
 Opció:
-- -X: per indicar el tipus de request.
-- -d: per indicar paràmetres. Cada paràmetre haurà d'anar precedit per *-d*.
+- -X: per indicar el tipus de mètode.
+- -d: per indicar paràmetres. Si n'hi ha diversos, cada un haurà d'anar precedits pel flag.
 
 
 ###netstat
