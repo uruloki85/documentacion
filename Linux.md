@@ -8,7 +8,7 @@ curl -X PUT --cookie="ega.services.session.id=1" -d level=INFO localhost:9400/no
 ```
 Opció:
 - **-X**: per indicar el tipus de mètode.
-- **-d**: per enviar dades POST. Cada atribut haurà d'anar precedits pel flag.
+- **-d**: per enviar dades POST. Cada atribut haurà d'anar precedit pel flag.
 - **--cookie**: per indicar una cookie.
 
 
