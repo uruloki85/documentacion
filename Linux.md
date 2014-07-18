@@ -21,3 +21,16 @@ Així, si volem saber quina app està utilitzant un port determinat, hem d'execu
 ```
 sudo netstat -tapen | grep ":9400 "
 ```
+
+###JSON pretty print
+Instal·lar la llibreria *yajl* que inclou les eines *json_reformat* i *json_verify*:
+```
+echo '{"b":2, "a":1}' | json_reformat
+```
+Imprimirà el següent:
+```json
+{
+    "b": 2,
+    "a": 1
+}
+```
