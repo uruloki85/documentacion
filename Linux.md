@@ -10,6 +10,9 @@ Opció:
 - **-X**: per indicar el tipus de mètode.
 - **-d**: per enviar dades POST. Cada atribut haurà d'anar precedit pel flag.
 - **--cookie**: per indicar una cookie.
+- **-H**: per afegir headers.
+- **-i**: mostra les capceleres de la resposta
+- **-v**: mode verbose (info. tant de la request com de la response)
 
 
 ###netstat
