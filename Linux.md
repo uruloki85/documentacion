@@ -34,3 +34,18 @@ Imprimirà el següent:
     "a": 1
 }
 ```
+
+###Create a Desktop icon
+Open a terminal and type:
+```
+gnome-desktop-item-edit --create-new ~/Desktop
+```
+
+###Create a link to an app
+Open a terminal and type:
+```
+cd /usr/local/bin
+sudo ln -s ../squirrel-sql-3.2.1/squirrel-sql.sh squirrel-sql
+```
+After that, you can run the program typing <code>squirrel-sql</code>
+
