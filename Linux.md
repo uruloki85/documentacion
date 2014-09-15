@@ -4,14 +4,14 @@ Informació d'interès.
 ###curl
 Per enviar requests:
 ```
-curl -X PUT --cookie="ega.services.session.id=1" -d level=INFO localhost:9400/notificationservice/v1/logs
+curl -X PUT --cookie="ega.services.session.id=1" -d level=INFO localhost:9400/logs
 ```
 Opció:
 - **-X**: per indicar el tipus de mètode.
 - **-d**: per enviar dades POST. Cada atribut haurà d'anar precedit pel flag.
 - **--data-urlencode**: per poder enviar caràcters especials. P.e. 
 ```
-curl -X POST localhost:9200/sessionservice/v1/sessions/ -d username="jordi.rambla@crg.eu" --data-urlencode password="Cr&364"
+curl -X POST localhost:9200/sessions/ -d username=john --data-urlencode password="Cr&364"
 
 ```
 - **-b/--cookie**: per indicar una cookie.
