@@ -12,7 +12,6 @@ Opció:
 - **--data-urlencode**: per poder enviar caràcters especials. P.e. 
 ```
 curl -X POST localhost:9200/sessions/ -d username=john --data-urlencode password="Cr&364"
-
 ```
 - **-b/--cookie**: per indicar una cookie.
 - **-H**: per afegir headers. P. e. 
