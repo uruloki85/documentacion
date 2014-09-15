@@ -16,7 +16,11 @@ curl -H "Authorization: 3" localhost:8086/submitter/v1/notifications
 ```
 - **-i**: mostra les capceleres de la resposta
 - **-v**: mode verbose (info. tant de la request com de la response)
+- **--data-urlencode**: per poder enviar caràcters especials. P.e. 
+```
+curl -X POST localhost:9200/sessionservice/v1/sessions/ -d username="jordi.rambla@crg.eu" --data-urlencode password="Cr&364"
 
+```
 
 ###netstat
 Proporciona informació dels **ports ocupats**.
