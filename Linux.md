@@ -4,7 +4,7 @@ Informació d'interès.
 ###curl
 Per enviar requests:
 ```
-curl -X PUT --cookie="ega.services.session.id=1" -d level=INFO localhost:9400/logs
+curl -X PUT --cookie "ega.services.session.id=1" -d level=INFO localhost:9400/logs
 ```
 Opció:
 - **-X**: per indicar el tipus de mètode.
