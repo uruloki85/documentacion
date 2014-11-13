@@ -26,6 +26,6 @@ db.collection_name.update(
 			"field_name" : "new_value"
 		}
 	},
-	{multi: true}
+	{multi: true} // All documents that matches the condition
 )
 ```
