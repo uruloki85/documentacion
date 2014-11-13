@@ -20,7 +20,7 @@ db.collection_name.drop()
 * Edit a value in a collection:
 ```json
 db.collection_name.update(
-	{ "field_name" : "condition_value" }, <!-- Query -->
+	{ "field_name" : "condition_value" }, // Query
 	{
 		$set: {
 			"field_name" : "new_value"
