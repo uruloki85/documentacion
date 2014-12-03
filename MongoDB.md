@@ -29,7 +29,7 @@ db.collection_name.update(
 	{multi: true} // All documents that matches the condition
 )
 ```
-* Order result list:
+* Order result list (1 for ascendent order, -1 for descendent):
 ```json
 db.notificationModel.find().sort({ "serviceMessage.header.timestamp": -1 }).pretty()
 ```
