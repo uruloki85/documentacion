@@ -29,3 +29,19 @@ db.collection_name.update(
 	{multi: true} // All documents that matches the condition
 )
 ```
+* Order result list:
+```json
+db.notificationModel.find().sort({ "serviceMessage.header.timestamp": -1 }).pretty()
+```
+Where documentas follow this structure:
+```json
+{
+	"_id" : ObjectId("5464bae5e4b014f477fe07b9"),
+	"serviceMessage" : {
+		...
+		"header" : {
+			"timestamp" : ISODate("2014-11-13T14:06:28Z")
+		}
+	}
+}
+```
