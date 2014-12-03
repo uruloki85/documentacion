@@ -33,7 +33,7 @@ db.collection_name.update(
 ```json
 db.notificationModel.find().sort({ "serviceMessage.header.timestamp": -1 }).pretty()
 ```
-Where documentas follow this structure:
+Where documents follow this structure:
 ```json
 {
 	"_id" : ObjectId("5464bae5e4b014f477fe07b9"),
