@@ -511,4 +511,76 @@ Initialize a ```RestTemplate``` object in a ```@Configuration``` class. Be sure 
     return converter;
   }
 ```
-
+Without this module we can get the following error caused by the "incorrect" serialization of a DateTime field:
+```json
+{
+  "@class": "eu.crg.ega.microservice.dto.message.EventMessage",
+  "header": {
+    "format": null,
+    "producer": null,
+    "messageId": "1",
+    "conversationId": null,
+    "idInSequence": null,
+    "timestamp": {
+      "era": 1,
+      "dayOfMonth": 3,
+      "dayOfWeek": 3,
+      "dayOfYear": 337,
+      "year": 2014,
+      "centuryOfEra": 20,
+      "millisOfSecond": 0,
+      "millisOfDay": 52200000,
+      "secondOfMinute": 0,
+      "secondOfDay": 52200,
+      "minuteOfHour": 30,
+      "minuteOfDay": 870,
+      "monthOfYear": 12,
+      "weekOfWeekyear": 49,
+      "yearOfCentury": 14,
+      "hourOfDay": 14,
+      "weekyear": 2014,
+      "yearOfEra": 2014,
+      "millis": 1417613400000,
+      "zone": {
+        "fixed": false,
+        "uncachedZone": {
+          "cachable": true,
+          "fixed": false,
+          "id": "Europe\/Madrid"
+        },
+        "id": "Europe\/Madrid"
+      },
+      "chronology": {
+        "zone": {
+          "fixed": false,
+          "uncachedZone": {
+            "cachable": true,
+            "fixed": false,
+            "id": "Europe\/Madrid"
+          },
+          "id": "Europe\/Madrid"
+        }
+      },
+      "afterNow": false,
+      "beforeNow": true,
+      "equalNow": false
+    },
+    "millisecToExpiration": null,
+    "replyTo": null
+  },
+  "messageType": "EVENT",
+  "event": {
+    "eventType": "FTP",
+    "version": null
+  },
+  "complementaryInfo": {
+    "content": "Some content",
+    "consumer": null
+  }
+}
+```
+```java
+eu.crg.ega.microservice.exception.RestRuntimeException: Could not read JSON: Can not deserialize instance of org.joda.time.DateTime out of START_OBJECT token
+ at [Source: org.eclipse.jetty.server.HttpInput@3c7293ab; line: 1, column: 352] (through reference chain: eu.crg.ega.microservice.dto.message.EventMessage["header"]->eu.crg.ega.microservice.dto.message.MessageHeader["timestamp"]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Can not deserialize instance of org.joda.time.DateTime out of START_OBJECT token
+ at [Source: org.eclipse.jetty.server.HttpInput@3c7293ab; line: 1, column: 352] (through reference chain: eu.crg.ega.microservice.dto.message.EventMessage["header"]->eu.crg.ega.microservice.dto.message.MessageHeader["timestamp"])
+```
