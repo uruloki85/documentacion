@@ -467,3 +467,48 @@ Después, desde Spring podemos capturarla así:
   }
 ```
 Si Spring no encuentra la cookie en la request lanzará una excepción.
+
+
+###REST calls
+Initialize a ```RestTemplate``` object in a ```@Configuration``` class. Be sure to add the ```JodaModule``` to the ```ObjectMapper``` that will be used by ```MappingJackson2HttpMessageConverter``` because it will serialize all ```DateTime``` fields using the milliseconds form (instead of a String conversion or other):
+```java
+  @Bean 
+  public ObjectMapper objectMapper() {
+    ObjectMapper objectMapper = new ObjectMapper();
+    // This module serializes/deserializes DateTime values using the milliseconds form
+    objectMapper.registerModule(new JodaModule());
+    return objectMapper;
+  }
+
+  @Bean
+  public RestTemplate restTemplate() {
+    RestTemplate restTemplate = new RestTemplate();
+
+    List<HttpMessageConverter<?>> messageConverters = restTemplate.getMessageConverters();
+    if(messageConverters == null) {
+      messageConverters = new ArrayList<HttpMessageConverter<?>>();
+    }
+    boolean found = false;
+    for (HttpMessageConverter<?> converter : messageConverters) {
+      if (converter instanceof MappingJackson2HttpMessageConverter) {
+        found = true;
+        // To ensure that the Jackson converter uses an object mapper with Joda module
+        ((MappingJackson2HttpMessageConverter) converter).setObjectMapper(objectMapper());
+      }
+    }
+    if (!found) {
+      messageConverters.add(addJacksonConverter());
+    }
+    restTemplate.setMessageConverters(messageConverters);
+
+    restTemplate.setErrorHandler(new RestEventErrorHandler());
+    return restTemplate;
+  }
+
+  private MappingJackson2HttpMessageConverter addJacksonConverter() {
+    MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+    converter.setObjectMapper(objectMapper());
+    return converter;
+  }
+```
+
