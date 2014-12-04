@@ -516,11 +516,6 @@ Without this module we can get the following error caused by the "incorrect" ser
 {
   "@class": "eu.crg.ega.microservice.dto.message.EventMessage",
   "header": {
-    "format": null,
-    "producer": null,
-    "messageId": "1",
-    "conversationId": null,
-    "idInSequence": null,
     "timestamp": {
       "era": 1,
       "dayOfMonth": 3,
@@ -564,18 +559,7 @@ Without this module we can get the following error caused by the "incorrect" ser
       "afterNow": false,
       "beforeNow": true,
       "equalNow": false
-    },
-    "millisecToExpiration": null,
-    "replyTo": null
-  },
-  "messageType": "EVENT",
-  "event": {
-    "eventType": "FTP",
-    "version": null
-  },
-  "complementaryInfo": {
-    "content": "Some content",
-    "consumer": null
+    }
   }
 }
 ```
