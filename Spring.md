@@ -511,7 +511,13 @@ Initialize a ```RestTemplate``` object in a ```@Configuration``` class. Be sure 
     return converter;
   }
 ```
-Without this module we can get the following error caused by the "incorrect" serialization of a DateTime field:
+Without this module we can get the following error caused by the "incorrect" (or not valid for us) serialization of a ```DateTime``` field:
+```java
+eu.crg.ega.microservice.exception.RestRuntimeException: Could not read JSON: Can not deserialize instance of org.joda.time.DateTime out of START_OBJECT token
+ at [Source: org.eclipse.jetty.server.HttpInput@3c7293ab; line: 1, column: 352] (through reference chain: eu.crg.ega.microservice.dto.message.EventMessage["header"]->eu.crg.ega.microservice.dto.message.MessageHeader["timestamp"]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Can not deserialize instance of org.joda.time.DateTime out of START_OBJECT token
+ at [Source: org.eclipse.jetty.server.HttpInput@3c7293ab; line: 1, column: 352] (through reference chain: eu.crg.ega.microservice.dto.message.EventMessage["header"]->eu.crg.ega.microservice.dto.message.MessageHeader["timestamp"])
+```
+And this is the serialization that causes the error:
 ```json
 {
   "@class": "eu.crg.ega.microservice.dto.message.EventMessage",
@@ -562,9 +568,4 @@ Without this module we can get the following error caused by the "incorrect" ser
     }
   }
 }
-```
-```java
-eu.crg.ega.microservice.exception.RestRuntimeException: Could not read JSON: Can not deserialize instance of org.joda.time.DateTime out of START_OBJECT token
- at [Source: org.eclipse.jetty.server.HttpInput@3c7293ab; line: 1, column: 352] (through reference chain: eu.crg.ega.microservice.dto.message.EventMessage["header"]->eu.crg.ega.microservice.dto.message.MessageHeader["timestamp"]); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Can not deserialize instance of org.joda.time.DateTime out of START_OBJECT token
- at [Source: org.eclipse.jetty.server.HttpInput@3c7293ab; line: 1, column: 352] (through reference chain: eu.crg.ega.microservice.dto.message.EventMessage["header"]->eu.crg.ega.microservice.dto.message.MessageHeader["timestamp"])
 ```
