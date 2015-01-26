@@ -23,6 +23,7 @@ createdb erapro
 ```
 psql erapro
 ```
+Grant permissions to this user:
 ```
 grant all privileges on database erapro to microaccounts;
 ```
