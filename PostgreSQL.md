@@ -3,7 +3,7 @@ PostgreSQL
 
 * Login as **postgres** user (default administrator):
 ```
-sabela@pc:~$ sudo -u postgres psql
+sabela@pc:~$ sudo -i -u postgres
 ```
 * Use <code>psql</code> to get a Postgres prompt.
 * Use <code>\q</code> to exit this promp.
