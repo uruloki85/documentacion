@@ -612,3 +612,18 @@ public class CrgEraproServiceTest {
 where <code>crg_sample</code> is the table's name and <code>id</code> and <code>ega_submission_account_id</code> are columns.
 * Annotation <code>@DatabaseSetup</code> can be applied at class or method level.
 * It is necessary that the method that performs an update/delete is annotated with <code>@Transactional(value = "secondaryTransactionManager")</code> (again, value must be set if there are several datasources)
+* Use <code>@ExpectedDatabase(value = "/db/crg_dac_expected.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)</code> to automatically validate table content after running the test.
+```java
+  @Test
+  @ExpectedDatabase(value = "/db/crg_dac_expected.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
+  public void saveDacs() {
+    addUserToContext("ega-box-123", COMMON_USER);
+    
+    List<DacData> data = initializeDacList();
+    
+    Tuple<DacData> savedDacs = crgEraproService.saveDacs(data);
+    
+    assertThat(savedDacs, notNullValue(Tuple.class));
+  }
+```
+
