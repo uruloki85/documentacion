@@ -610,5 +610,5 @@ public class CrgEraproServiceTest {
     <crg_sample id="ERS001" ega_submission_account_id="001"/>
 </dataset>
 ```
-where crg_sample is the table's name and id and ega_submission_account_id are columns.
+where <code>crg_sample</code> is the table's name and <code>id</code> and <code>ega_submission_account_id</code> are columns.
 * Annotation <code>@DatabaseSetup</code> can be applied at class or method level.
