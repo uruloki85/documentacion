@@ -593,11 +593,10 @@ Helping tools for testing that uses SQL databases.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {Application.class})
 @WebAppConfiguration
-@Transactional
+@Transactional(value = "secondaryTransactionManager") //Necessary if there are several datasources
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
-  DirtiesContextTestExecutionListener.class,
   TransactionDbUnitTestExecutionListener.class })
-@DbUnitConfiguration(databaseConnection = {"secondaryDataSource"}) //Only necessary if dataSource bean is not named exactly dataSource
+@DbUnitConfiguration(databaseConnection = {"secondaryDataSource"}) //Necessary if there are several datasources
 @DatabaseSetup(value = {"/db/crg_sample.xml", "/db/crg_dac.xml", "/db/ega_submission_account.xml"}) //Database content that will be populated before executing each test
 @DatabaseTearDown(value = {"/db/crg_sample.xml", "/db/crg_dac.xml", "/db/ega_submission_account.xml"}, type = DatabaseOperation.DELETE_ALL) //If you want to delete all database content after each test
 @IntegrationTest("server.port:0")//Without this the complete context is not loaded (with all custom configuration)
@@ -612,3 +611,4 @@ public class CrgEraproServiceTest {
 ```
 where <code>crg_sample</code> is the table's name and <code>id</code> and <code>ega_submission_account_id</code> are columns.
 * Annotation <code>@DatabaseSetup</code> can be applied at class or method level.
+* It is necessary that the method that performs an update/delete is annotated with <code>@Transactional(value = "secondaryTransactionManager")</code> (again, value must be set if there are several datasources)
