@@ -603,7 +603,7 @@ Helping tools for testing that uses SQL databases.
 @IntegrationTest("server.port:0")//Without this the complete context is not loaded (with all custom configuration)
 public class CrgEraproServiceTest {
 ```
-* Database content should be located inside /src/test/resource folder (default) and the content must be like this:
+* Database content should be located inside /src/test/resource folder (default) and the content must be like [this](http://dbunit.sourceforge.net/apidocs/org/dbunit/dataset/xml/FlatXmlDataSet.html):
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
