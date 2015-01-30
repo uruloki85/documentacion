@@ -569,3 +569,37 @@ And this is the serialization that causes the error:
   }
 }
 ```
+
+###[DBUnit](https://github.com/springtestdbunit/spring-test-dbunit)
+Helping tools for testing that uses SQL databases.
+* Add dependencies to pom.xml:
+```xml
+<dependency>
+    <groupId>org.dbunit</groupId>
+    <artifactId>dbunit</artifactId>
+    <version>2.4.9</version>
+    <scope>test</scope>
+</dependency>
+<dependency>
+	<groupId>com.github.springtestdbunit</groupId>
+	<artifactId>spring-test-dbunit</artifactId>
+	<version>1.2.1</version>
+	<scope>test</scope>
+</dependency>
+```
+* Add annotations to test class:
+```java
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = {Application.class})
+@WebAppConfiguration
+@Transactional
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+  DirtiesContextTestExecutionListener.class,
+  TransactionDbUnitTestExecutionListener.class })
+@DbUnitConfiguration(databaseConnection = {"secondaryDataSource"}) //Only necessary if dataSource bean is not call exactly dataSource
+@DatabaseSetup(value = {"/db/crg_sample.xml", "/db/crg_dac.xml", "/db/ega_submission_account.xml"}) //Database content that will be populated before executing each test
+@DatabaseTearDown(value = {"/db/crg_sample.xml", "/db/crg_dac.xml", "/db/ega_submission_account.xml"}, type = DatabaseOperation.DELETE_ALL) //If you want to delete all database content after each test
+@IntegrationTest("server.port:0")//Without this the complete context is not loaded (with all custom configuration)
+public class CrgEraproServiceTest {
+```
