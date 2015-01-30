@@ -597,9 +597,18 @@ Helping tools for testing that uses SQL databases.
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
   DirtiesContextTestExecutionListener.class,
   TransactionDbUnitTestExecutionListener.class })
-@DbUnitConfiguration(databaseConnection = {"secondaryDataSource"}) //Only necessary if dataSource bean is not call exactly dataSource
+@DbUnitConfiguration(databaseConnection = {"secondaryDataSource"}) //Only necessary if dataSource bean is not named exactly dataSource
 @DatabaseSetup(value = {"/db/crg_sample.xml", "/db/crg_dac.xml", "/db/ega_submission_account.xml"}) //Database content that will be populated before executing each test
 @DatabaseTearDown(value = {"/db/crg_sample.xml", "/db/crg_dac.xml", "/db/ega_submission_account.xml"}, type = DatabaseOperation.DELETE_ALL) //If you want to delete all database content after each test
 @IntegrationTest("server.port:0")//Without this the complete context is not loaded (with all custom configuration)
 public class CrgEraproServiceTest {
 ```
+* Database content should be located inside /src/test/resource folder (default) and the content must be like this:
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <crg_sample id="ERS001" ega_submission_account_id="001"/>
+</dataset>
+```
+where crg_sample is the table's name and id and ega_submission_account_id are columns.
+* Annotation <code>@DatabaseSetup</code> can be applied at class or method level.
