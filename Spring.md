@@ -593,7 +593,7 @@ Helping tools for testing that uses SQL databases.
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {Application.class})
 @WebAppConfiguration
-@Transactional(value = "secondaryTransactionManager") //Necessary if there are several datasources
+//@Transactional(value = "secondaryTransactionManager") //Necessary if there are several datasources
 @TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
   TransactionDbUnitTestExecutionListener.class })
 @DbUnitConfiguration(databaseConnection = {"secondaryDataSource"}) //Necessary if there are several datasources
@@ -626,4 +626,5 @@ where <code>crg_sample</code> is the table's name and <code>id</code> and <code>
     assertThat(savedDacs, notNullValue(Tuple.class));
   }
 ```
+**NOTE:** I haven't achived to get this annotation working well!
 
