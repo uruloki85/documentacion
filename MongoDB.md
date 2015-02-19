@@ -18,7 +18,7 @@ show collections
 ```json
 db.collection_name.drop()
 ```
-###Edit a value in a collection
+###Edit a value ($set)
 ```json
 db.collection_name.update(
 	{ "field_name" : "condition_value" }, // Query
@@ -45,7 +45,7 @@ db.collection_name.update(
 	]
 }
 ```
-* Edition query ($set)
+* Edition query
 ```json
 db.analysisModel.update(
     { "_id" : ObjectId("54e5b724e4b01197ed492f0a") }, 
@@ -93,7 +93,7 @@ db.analysisModel.update(
    { $unset: { "xmlRootElement.analysis.0.studyref.0": ""} }
 )
 ```
-###Order a list 
+###Order a list (sort())
 1 for ascendent order, -1 for descendent:
 ```json
 db.notificationModel.find().sort({ "serviceMessage.header.timestamp": -1 }).pretty()
