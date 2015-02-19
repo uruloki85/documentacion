@@ -1,6 +1,11 @@
 #Linux
 Informació d'interès.
 
+###Copy via SSH
+```
+scp your_username@remotehost.edu:foobar.txt /some/local/directory
+```
+
 ###curl
 Per enviar requests:
 ```
@@ -20,7 +25,6 @@ curl -H "Authorization: 3" localhost:8086/submitter/v1/notifications
 ```
 - **-i**: mostra les capceleres de la resposta
 - **-v**: mode verbose (info. tant de la request com de la response)
-
 
 ###netstat
 Proporciona informació dels **ports ocupats**.
