@@ -1,6 +1,7 @@
 [MongoDB] (http://docs.mongodb.org/manual/)
 =======
 
+###Most used commands:
 * List all DBs available:
 ```json
 show dbs
@@ -17,7 +18,7 @@ show collections
 ```json
 db.collection_name.drop()
 ```
-* Edit a value in a collection:
+###Edit a value in a collection:
 ```json
 db.collection_name.update(
 	{ "field_name" : "condition_value" }, // Query
@@ -30,8 +31,9 @@ db.collection_name.update(
 )
 ```
 Complete example:
-** Original data:
+* Original data:
 ```json
+"_id" : ObjectId("54e5b724e4b01197ed492f0a"),
 "xmlRootElement" : {
 	"analysis" : [
 		{
@@ -43,7 +45,7 @@ Complete example:
 	]
 }
 ```
-** Edition query:
+* Edition query:
 ```json
 db.analysisModel.update(
     { "_id" : ObjectId("54e5b724e4b01197ed492f0a") }, 
@@ -57,8 +59,9 @@ db.analysisModel.update(
 ```
 Use <code>{multi: true}</code> if there are several documents that matches the query (otherwise it will be updated only the first one found).
 Use <code>$</code> if you don't know the position in the array of the element you want to change (the position depends on the query).
-** Final result:
+* Final result:
 ```json
+"_id" : ObjectId("54e5b724e4b01197ed492f0a"),
 "xmlRootElement" : {
 	"analysis" : [
 		{
@@ -70,7 +73,7 @@ Use <code>$</code> if you don't know the position in the array of the element yo
 	]
 }
 ```
-* Order result list (1 for ascendent order, -1 for descendent):
+###Order result list (1 for ascendent order, -1 for descendent):
 ```json
 db.notificationModel.find().sort({ "serviceMessage.header.timestamp": -1 }).pretty()
 ```
