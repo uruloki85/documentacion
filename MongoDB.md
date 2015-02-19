@@ -2,23 +2,23 @@
 =======
 
 ###Most used commands:
-* List all DBs available:
+* List all DBs available
 ```json
 show dbs
 ```
-* Show DB in use:
+* Show DB in use
 ```json
 db
 ```
-* List all collections in DB:
+* List all collections in DB
 ```json
 show collections
 ```
-* Delete collection content:
+* Delete collection content
 ```json
 db.collection_name.drop()
 ```
-###Edit a value in a collection:
+###Edit a value in a collection
 ```json
 db.collection_name.update(
 	{ "field_name" : "condition_value" }, // Query
@@ -30,8 +30,8 @@ db.collection_name.update(
 	{multi: true} // All documents that matches the condition
 )
 ```
-Complete example:
-* Original data:
+#####Complete example
+* Original data
 ```json
 "_id" : ObjectId("54e5b724e4b01197ed492f0a"),
 "xmlRootElement" : {
@@ -45,7 +45,7 @@ Complete example:
 	]
 }
 ```
-* Edition query:
+* Edition query
 ```json
 db.analysisModel.update(
     { "_id" : ObjectId("54e5b724e4b01197ed492f0a") }, 
@@ -59,7 +59,7 @@ db.analysisModel.update(
 ```
 Use <code>{multi: true}</code> if there are several documents that matches the query (otherwise it will be updated only the first one found).
 Use <code>$</code> if you don't know the position in the array of the element you want to change (the position depends on the query).
-* Final result:
+* Final result
 ```json
 "_id" : ObjectId("54e5b724e4b01197ed492f0a"),
 "xmlRootElement" : {
@@ -73,7 +73,8 @@ Use <code>$</code> if you don't know the position in the array of the element yo
 	]
 }
 ```
-###Order result list (1 for ascendent order, -1 for descendent):
+###Order result list 
+1 for ascendent order, -1 for descendent:
 ```json
 db.notificationModel.find().sort({ "serviceMessage.header.timestamp": -1 }).pretty()
 ```
