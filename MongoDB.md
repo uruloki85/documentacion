@@ -73,12 +73,12 @@ Use <code>$</code> if you don't know the position in the array of the element yo
 	]
 }
 ```
-###Order result list 
+###Order a list 
 1 for ascendent order, -1 for descendent:
 ```json
 db.notificationModel.find().sort({ "serviceMessage.header.timestamp": -1 }).pretty()
 ```
-Where documents follow this structure:
+Where documents follow this structure
 ```json
 {
 	"_id" : ObjectId("5464bae5e4b014f477fe07b9"),
