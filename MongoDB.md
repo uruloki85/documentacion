@@ -45,7 +45,7 @@ db.collection_name.update(
 	]
 }
 ```
-* Edition query
+* Edition query ($set)
 ```json
 db.analysisModel.update(
     { "_id" : ObjectId("54e5b724e4b01197ed492f0a") }, 
@@ -72,6 +72,26 @@ Use <code>$</code> if you don't know the position in the array of the element yo
 		}
 	]
 }
+```
+###Delete a field ($unset)
+* We want to remove the field "0" that apperars inside "studyref"
+```json
+"_id" : ObjectId("54e5b724e4b01197ed492f0a"),
+"xmlRootElement" : {
+	"studyref" : {
+		"0" : {
+			"accession" : "EGAS00001000618"
+		},
+		"accession" : "EGAS00001000618"
+	}
+}
+```
+* Delete query
+```json
+db.analysisModel.update(
+   { "_id" : ObjectId("54e5b724e4b01197ed492f0a") },
+   { $unset: { "xmlRootElement.analysis.0.studyref.0": ""} }
+)
 ```
 ###Order a list 
 1 for ascendent order, -1 for descendent:
