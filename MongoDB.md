@@ -30,7 +30,7 @@ db.collection_name.update(
 )
 ```
 Complete example:
-- Original data:
+** Original data:
 ```json
 "xmlRootElement" : {
 	"analysis" : [
@@ -43,7 +43,7 @@ Complete example:
 	]
 }
 ```
-- Edition query:
+** Edition query:
 ```json
 db.analysisModel.update(
     { "_id" : ObjectId("54e5b724e4b01197ed492f0a") }, 
@@ -55,8 +55,9 @@ db.analysisModel.update(
     {multi: false}
 )
 ```
-In this example we only have one element in analysis array, but if there were more and we want to change all of them we can use <code>$</code> instead of <code>0</code> and set <code>multi</code> to true.
-- Final result:
+Use <code>{multi: true}</code> if there are several documents that matches the query (otherwise it will be updated only the first one found).
+Use <code>$</code> if you don't know the position in the array of the element you want to change (the position depends on the query).
+** Final result:
 ```json
 "xmlRootElement" : {
 	"analysis" : [
