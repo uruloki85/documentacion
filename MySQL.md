@@ -1,7 +1,11 @@
 #MySQL
 
-###Carregar un dump
-Per carregar el contingut d'un volcat (dump) en una base de dades existent:
+###Load a dump
+Database must exist. Then run:
 ```
-mysql -u user -p database_name < path_to_file.sql
+mysql -u user_name -p database_name < /path/to/file/name.sql
+```
+###Dump a database
+```
+mysqldump -u user_name -p database_name > /path/to/file/name.sql
 ```
