@@ -40,7 +40,7 @@ microaccounts@pc:~$ psql -d erapro -U microaccount
 ```
 sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```
-* To load a dumpl:
+* To load a dump:
 ```
 psql -h host -d database_name -U user -f file.sql
 ```
