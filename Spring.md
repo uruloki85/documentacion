@@ -628,7 +628,7 @@ where <code>crg_sample</code> is the table's name and <code>id</code> and <code>
 ```
 **NOTE:** I haven't achived to get this annotation working well!
 
-###Call a stored procedure
+###Call a stored procedure and extend repository funciontalities
 * Add the stored procedure metadata in the @Entity class:
 ```java
 @Entity
@@ -659,13 +659,13 @@ public class PermissionRepositoryImpl implements PermissionRepositoryCustom {
   
   @Override
   public List<Integer> retrievePermissionIds(String userId, List<String> userGroups) {
-    List<Integer> results = callProcedure(userId, Integer.class, "findPermissionIds");
+    List<Integer> results = callProcedure(userId, Integer.class, "findPermissionIds"); // Use the name specified in @NamedStoredProcedureQuery name attribute
     return results;
   }
 
   @Override
   public List<Permission> retrievePermissions(String userId, List<String> userGroups) {
-    List<Permission> results = callProcedure(userId, Permission.class, "findPermissions");
+    List<Permission> results = callProcedure(userId, Permission.class, "findPermissions"); // Use the name specified in @NamedStoredProcedureQuery name attribute
     return results;
   }
 
@@ -692,7 +692,7 @@ public class PermissionRepositoryImpl implements PermissionRepositoryCustom {
 ```java
 @Repository
 public interface PermissionRepository extends CustomQuerydslJpaRepository<Permission, Integer>, PermissionRepositoryCustom {
-  
+  // Write any query methods
 }
 ```
 The metadata specified in the @Entity class allows Spring to perform automatically conversion. So after calling the procedure it is not necessary to convert the result set returned (an Object[]) to our class (Permission class in the example).
