@@ -110,3 +110,8 @@ Where documents follow this structure
 	}
 }
 ```
+###Dump
+Binary dump:
+```bash
+sdelatorre@frontendtest01:~> /iso/tmp/mongodump --host devil.local --db submitter_dev --collection submissionModel --query '{"submitterId":"ega-box-211"}' --out submissions_ega-box-211_dump
+```
