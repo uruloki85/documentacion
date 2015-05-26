@@ -115,3 +115,20 @@ Binary dump:
 ```bash
 sdelatorre@frontendtest01:~> /iso/tmp/mongodump --host devil.local --db submitter_dev --collection submissionModel --query '{"submitterId":"ega-box-211"}' --out submissions_ega-box-211_dump
 ```
+###Search in an array
+If the array contains Strings:
+```json
+db.userModel.find( {	
+	authorities : { "ROLE_ADMIN" } 
+} ).pretty()
+```
+If the array contains an object:
+```json
+db.userModel.find( {	
+	authorities : { 
+		$elemMatch: { 
+			role: "ROLE_ADMIN"
+		} 
+	}
+} ).pretty()
+```
