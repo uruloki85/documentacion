@@ -132,3 +132,24 @@ db.userModel.find( {
 	}
 } ).pretty()
 ```
+###Update an element of an array
+Original document:
+```json
+{
+	"_id" : "4",
+	"csvColumnNames" : [
+		"Sample",
+		"Fastq File"
+	]
+}
+
+```
+To replace "Sample" with "Sample alias":
+```json
+db.runFileTypeModel.update(
+   { csvColumnNames: "Sample" },
+   { $set: { "csvColumnNames.$" : "Sample alias" } },
+   { multi : true}
+)
+```
+Use $ when you don't know the position of the element in the array.
