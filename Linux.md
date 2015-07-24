@@ -26,6 +26,13 @@ curl -H "Authorization: 3" localhost:8086/submitter/v1/notifications
 - **-i**: mostra les capceleres de la resposta
 - **-v**: mode verbose (info. tant de la request com de la response)
 
+#####Send a file
+```
+curl -X POST -F data=@/path/to/file/name.txt localhost:8086/submitter/v1/submissions/{id}/runs/sequencing/csv
+```
+- **-F**: to emulate a form.
+- **@**: prefix the file with **@** to attach it in the post as a file upload.
+
 ###netstat
 Proporciona informació dels **ports ocupats**.
 
