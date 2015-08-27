@@ -153,3 +153,32 @@ db.runFileTypeModel.update(
 )
 ```
 Use $ when you don't know the position of the element in the array.
+
+###Convert a simple field into a complex structure using the original field value
+Original data:
+```json
+{
+	"_id" : ObjectId("555323f70cf2f123d8966778"),
+	"files" : [ "UK10K_SCOOP5013854.vcf.gz" ]
+}
+
+```
+Function to execute:
+```json
+db.runModel.find({}).snapshot().forEach( function (x) { 
+	x.files = [ { "filename": x.files[0] } ]; 
+	db.runModel.save(x); 
+});
+```
+Resulting data:
+```json
+{
+	"_id" : ObjectId("555323f70cf2f123d8966778"),
+	"files" : [
+		{
+			"filename" : "UK10K_SCOOP5013854.vcf.gz"
+		}
+	]
+}
+
+```
