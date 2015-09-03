@@ -25,16 +25,16 @@ postgres@pc:~$ psql erapro
 ```
 Grant permissions to this user (run as postgres user):
 ```
-grant all privileges on database erapro to microaccounts;
-grant all privileges on all tables in schema public to microaccounts;
+erapro=> grant all privileges on database erapro to microaccounts;
+erapro=> grant all privileges on all tables in schema public to microaccounts;
 ```
-* To do login:
+* To do login in the postgres server:
 ```
 sabela@pc:~$ sudo -i -u microaccounts
 ```
 * Access to database:
 ```
-microaccounts@pc:~$ psql -d erapro -U microaccount
+sabela@pc:~$ psql -d erapro -U microaccount
 ```
 * To determine PostgreSQL port:
 ```
