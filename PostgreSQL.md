@@ -9,7 +9,7 @@ sabela@pc:~$ sudo -i -u postgres
 * Use <code>\q</code> to exit this promp.
 * Create a new role:
 ```
-createuser --interactive
+postgres@pc:~$ createuser --interactive
 ```
 This user needs to be a Linux user, too. If it doesn't exist, create it using:
 ```
@@ -17,11 +17,11 @@ sabela@pc:~$ sudo adduser microaccounts
 ```
 * Create a database
 ```
-createdb erapro
+postgres@pc:~$ createdb erapro
 ```
 * Connect to DB:
 ```
-psql erapro
+postgres@pc:~$ psql erapro
 ```
 Grant permissions to this user (run as postgres user):
 ```
@@ -42,5 +42,5 @@ sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```
 * To load a dump:
 ```
-psql -h host -d database_name -U user -f file.sql
+sabela@pc:~$ psql -h host -d database_name -U user -f file.sql -W
 ```
