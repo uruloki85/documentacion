@@ -1,5 +1,6 @@
 #Java
 
+###Guava library
 * Extract one field from a list without looping over it:
 ```java
 // TODO replace with lambda expression after upgrading to java 8
@@ -9,4 +10,18 @@ List<String> filenames = Lists.transform(fileDataList, new Function<FileData, St
     return input.getFilename();
   }
 });
+```
+* Extract one field from a List and convert to a Set
+```java
+  Set<String> experimentModelList =
+      FluentIterable.from(runs).transform(new Function<RunData, String>() {
+        @Override
+        public String apply(RunData input) {
+          return input.getExperimentId();
+        }
+    }).toSet();
+```
+* Convert a List to a Set
+```java
+FluentIterable.from(runIds).toSet()
 ```
