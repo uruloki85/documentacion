@@ -3,7 +3,9 @@
 ###Lambda expressions (Java 8)
 * Extract one field from a list without looping over it:
 ```java
-List<String> filenames = fileDataList.stream().map(file -> file.getFilename()).collect(Collectors.toList());
+List<String> filenames = fileDataList.stream()
+                                      .map(file -> file.getFilename())
+                                      .collect(Collectors.toList());
 ```
 
 ###Guava library
