@@ -50,8 +50,12 @@ Only the schema:
 ```
 sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc -s > sql01_crg_erapro_schema.backup
 ```
-- **-W/--password**: will prompt for the password.
-- **-Fc/--format=c**: file format will be custom (c).
-- **-s/--schema-only**: dump only the schema.
-- **-a/--data-only**: dump only the data.
+- <code>-h/--host</code>: host name of the machine where the postgres server is running.
+- <code>-p/--port</code>: postgres server port.
+- <code>-d/--dbname</code>: name of the database to connect to.
+- <code>-U/--username</code>: username to connect as.
+- <code>-W/--password</code>: will prompt for the password.
+- <code>-Fc/--format=c</code>: file format will be custom (c).
+- <code>-s/--schema-only</code>: dump only the schema.
+- <code>-a/--data-only</code>: dump only the data.
 
