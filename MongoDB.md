@@ -18,6 +18,13 @@ show collections
 ```json
 db.collection_name.drop()
 ```
+###Dump
+Binary dump:
+```bash
+sdelatorre@frontendtest01:~> /iso/tmp/mongodump --host devil.local --db submitter_dev --collection submissionModel --query '{"submitterId":"ega-box-211"}' --out submissions_ega-box-211_dump
+
+sdelatorre@app01:~> /iso/tmp/mongodump --host sql01 --db auth --collection userManagementModel --query '{},{_class:0}' --out sql01_auth_user_management_model_dump
+```
 ###Edit a value ($set)
 ```json
 db.collection_name.update(
@@ -109,13 +116,6 @@ Where documents follow this structure
 		}
 	}
 }
-```
-###Dump
-Binary dump:
-```bash
-sdelatorre@frontendtest01:~> /iso/tmp/mongodump --host devil.local --db submitter_dev --collection submissionModel --query '{"submitterId":"ega-box-211"}' --out submissions_ega-box-211_dump
-
-sdelatorre@app01:~> /iso/tmp/mongodump --host sql01 -db auth --collection userManagementModel --query '{},{_class:0}' --out sql01_auth_user_management_model_dump
 ```
 ###Search in an array
 If the array contains Strings:
