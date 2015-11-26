@@ -46,7 +46,6 @@ sabela@pc:~$ sudo netstat -plunt | grep postgres
 sabela@pc:~$ psql -h host -d database_name -U user -f file.sql -W
 ```
 * To do a dump:
-Only the schema:
 ```
 sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc -s > sql01_crg_erapro_schema.backup
 ```
