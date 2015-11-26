@@ -37,15 +37,15 @@ sabela@pc:~$ sudo -i -u microaccounts
 ```
 sabela@pc:~$ psql -d erapro -U microaccount
 ```
-* To determine PostgreSQL port:
+###To determine PostgreSQL port:
 ```
 sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```
-* To load a dump:
+###To load a dump:
 ```
 sabela@pc:~$ psql -h host -d database_name -U user -f file.sql -W
 ```
-* To do a dump:
+###To do a dump:
 ```
 sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc -s > sql01_crg_erapro_schema.backup
 ```
