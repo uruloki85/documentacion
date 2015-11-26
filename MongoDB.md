@@ -25,6 +25,10 @@ sdelatorre@frontendtest01:~> /iso/tmp/mongodump --host devil.local --db submitte
 
 sdelatorre@app01:~> /iso/tmp/mongodump --host sql01 --db auth --collection userManagementModel --query '{},{_class:0}' --out sql01_auth_user_management_model_dump
 ```
+###Load a dump
+```
+mongorestore --collection userManagementModel --db auth sql01_auth_user_management_model_dump.bson
+```
 ###Edit a value ($set)
 ```json
 db.collection_name.update(
