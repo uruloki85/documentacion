@@ -5,8 +5,9 @@ PostgreSQL
 ```
 sabela@pc:~$ sudo -i -u postgres
 ```
-* Use <code>psql</code> to get a Postgres prompt.
-* Use <code>\q</code> to exit this promp.
+Use <code>psql</code> to get a Postgres prompt.
+Use <code>\q</code> to exit this promp.
+
 * Create a new role:
 ```
 postgres@pc:~$ createuser --interactive
@@ -49,8 +50,8 @@ Only the schema:
 ```
 sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc -s > sql01_crg_erapro_schema.backup
 ```
-- *-W/--password*: will prompt for the password.
-- *-Fc/--format=c*: file format will be custom (c).
-- *-s/--schema-only*: dump only the schema.
-- *-a/--data-only*: dump only the data.
+- **-W/--password**: will prompt for the password.
+- **-Fc/--format=c**: file format will be custom (c).
+- **-s/--schema-only**: dump only the schema.
+- **-a/--data-only**: dump only the data.
 
