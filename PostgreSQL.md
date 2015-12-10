@@ -71,13 +71,11 @@ CREATE EXTENSION postgres_fdw;
 2. Create a foreign server object, using CREATE SERVER, to represent each remote database you want to connect to. Specify connection information, except user and password, as options of the server object.
 ```
 CREATE SERVER erapro_server FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'localhost', dbname 'erapro', port '4567');
-CREATE SERVER crg_erapro_server FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'localhost', dbname 'crg_erapro', port '4567');
 ```
 
 3. Create a user mapping, using CREATE USER MAPPING, for each database user you want to allow to access each foreign server. Specify the remote user name and password to use as user and password options of the user mapping.
 ```
-CREATE USER MAPPING FOR microaccounts SERVER erapro_server OPTIONS (user 'microaccounts', password 'wXveeLhdd6rB');
-CREATE USER MAPPING FOR microaccounts SERVER crg_erapro_server OPTIONS (user 'microaccounts', password 'wXveeLhdd6rB');
+CREATE USER MAPPING FOR microaccounts SERVER erapro_server OPTIONS (user 'remote_username', password 'remote_password');
 ```
 
 4. Create a foreign table, using CREATE FOREIGN TABLE, for each remote table you want to access. The columns of the foreign table must match the referenced remote table. You can, however, use table and/or column names different from the remote table's, if you specify the correct remote names as options of the foreign table object.
