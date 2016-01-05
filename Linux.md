@@ -33,6 +33,11 @@ curl -X POST -F data=@/path/to/file/name.txt localhost:8086/submitter/v1/submiss
 - **-F**: to emulate a form.
 - **@**: prefix the file with **@** to attach it in the post as a file upload.
 
+#####Performance
+```
+curl -w %{time_starttransfer}\\n%{time_total}\\n -o /dev/null -s -X GET "localhost:9700/archiveservice/v1/users/123/files?sourceType=EBI_INBOX&limit=0"
+```
+
 ###netstat
 Proporciona informació dels **ports ocupats**.
 
