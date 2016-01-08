@@ -92,6 +92,5 @@ SERVER erapro_server;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO microaccounts;
 ```
 ### Installation path
-* Location of postgres.conf and pg_hba.conf files: /etc/postgresql/9.1/main/
-* Binaries: /usr/lib/postgresql/9.3/
-* 
+* postgres.conf and pg_hba.conf: <code>/etc/postgresql/9.1/main/</code>
+* Binaries: <code>/usr/lib/postgresql/9.3/</code>
