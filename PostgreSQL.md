@@ -62,6 +62,7 @@ sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc 
 ```
 sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_dev -W -Fc -a < sql01_crg_erapro_schema.backup
 ```
+- <code>-O/--no-owner</code>: Do not output commands to set ownership of objects to match the original database (mandatory if users are not the same).
 ###Access tables in another Postgres DB
 * Install the **postgres_fdw** extension using CREATE EXTENSION.
 ```
