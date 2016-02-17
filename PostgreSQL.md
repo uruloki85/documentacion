@@ -20,6 +20,11 @@ sabela@pc:~$ sudo adduser microaccounts
 ```
 postgres@pc:~$ createdb erapro
 ```
+or
+```
+sabela@pc:~$ createdb erapro -h localhost -p 4567 -U microaccounts
+```
+Use dropdb for dropping a database.
 * Connect to DB:
 ```
 postgres@pc:~$ psql erapro
