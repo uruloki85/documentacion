@@ -6,6 +6,18 @@ Informació d'interès.
 scp your_username@remotehost.edu:foobar.txt /some/local/directory
 ```
 
+###Run a process already started in background
+If you run a process and later you realize that it will last very long, you can send it to execute in background although it's already running:
+####Way 1
+* Ctrl + Z: sends the process to background but stopped
+* <code>fg</code>: the process continues execution
+* <code>disown</code>: the process won't be killed although you close the session
+
+####Way 2
+* Ctrl + AD: dettaches the process using "screen". It keeps running in background.
+* <code>screen -r</code>: to recover it.
+
+
 ###curl
 Per enviar requests:
 ```
