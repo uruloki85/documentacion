@@ -14,7 +14,7 @@ If you run a process and later you realize that it will last very long, you can 
 * <code>disown</code>: the process won't be killed although you close the session
 
 ###Way 2
-* Ctrl + AD: dettaches the process using "screen". It keeps running in background.
+* Ctrl + AD: dettaches the process using <code>screen</code> (linux command). It keeps running in background.
 * <code>screen -r</code>: to recover it.
 
 
