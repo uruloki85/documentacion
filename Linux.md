@@ -11,11 +11,13 @@ If you run a process and later you realize that it will last very long, you can 
 ###Way 1
 * Ctrl + Z: sends the process to background but stopped
 * <code>fg</code>: the process continues execution
-* <code>disown</code>: the process won't be killed although you close the session
+* <code>disown</code>: the process won't be killed although you close the session. You can't see the command's output anymore.
 
-###Way 2
+###Way 2 (you must forsee that you might need to dettach a process)
+* Run <code>screen</code>: you will enter screen.
+* Run the process.
 * Ctrl + AD: dettaches the process using <code>screen</code> (linux command). It keeps running in background.
-* <code>screen -r</code>: to recover it.
+* <code>screen -r</code>: to recover it. You will see the command's output.
 
 
 ##curl
