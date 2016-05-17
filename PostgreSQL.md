@@ -69,6 +69,17 @@ sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_
 ```
 - <code>-O/--no-owner</code>: Do not output commands to set ownership of objects to match the original database (mandatory if users are not the same).
 
+###Listing running queries
+```sql
+SELECT pid, datid, datname, state, query 
+FROM pg_stat_activity 
+WHERE usename='microaccounts_dev' and state='active';
+```
+To kill a specific query:
+```
+SELECT pg_cancel_backend(pid);
+```
+
 ###Access tables in another Postgres DB
 * Install the **postgres_fdw** extension using CREATE EXTENSION.
 ```
