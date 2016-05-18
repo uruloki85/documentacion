@@ -80,6 +80,12 @@ To kill a specific query:
 SELECT pg_cancel_backend(pid);
 ```
 
+###Pattern matching
+```sql
+SELECT array_length(regexp_matches(d.stable_id,'^EGAD00001\d+'), 1) > 0 FROM dataset d;
+```
+Returns true or false if the stable id matches or not the pattern.
+
 ###Access tables in another Postgres DB
 * Install the **postgres_fdw** extension using CREATE EXTENSION.
 ```
