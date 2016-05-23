@@ -6,6 +6,30 @@ Informació d'interès.
 scp your_username@remotehost.edu:foobar.txt /some/local/directory
 ```
 
+##Find all files containing a string
+```
+grep -rnw '/path/to/somewhere/' -e "pattern"
+```
+* <code>-r</code> or <code>-R</code> is recursive,
+* <code>-n</code> is line number, and
+* <code>-w</code> stands match the whole word.
+* <code>-l</code> (lower-case L) can be added to just give the file name of matching files.
+
+Along with these, <code>--exclude</code> or <code>--include</code> parameter could be used for efficient searching. Something like below:
+```
+grep --include=\*.{c,h} -rnw '/path/to/somewhere/' -e "pattern"
+```
+This will only search through the files which have .c or .h extensions. Another example:
+```
+grep --exclude=*.o -rnw '/path/to/somewhere/' -e "pattern"
+```
+Above will exclude searching all the files ending with .o extension. 
+
+Just like exclude file it's possible to exclude/include directories through <code>--exclude-dir</code> and <code>--include-dir</code> parameter:
+```
+grep --exclude-dir={dir1,dir2,*.dst} -rnw '/path/to/somewhere/' -e "pattern"
+```
+
 ##Run a process already started in background
 If you run a process and later you realize that it will last very long, you can send it to execute in background although it's already running:
 ###Way 1
