@@ -62,14 +62,14 @@ sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc 
 - <code>-Fc/--format=c</code>: file format will be custom (c).
 - <code>-s/--schema-only</code>: dump only the schema.
 - <code>-a/--data-only</code>: dump only the data.
-- <code>--disable-triggers</code>: disable triggers while loading the dump.
-- <code>-c/--clean</code>: clean (drop) database objects before recreating them.
 
 ###To load a dump
 ```
 sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_dev -W -Fc -a < sql01_crg_erapro_schema.backup
 ```
 - <code>-O/--no-owner</code>: Do not output commands to set ownership of objects to match the original database (mandatory if users are not the same).
+- <code>--disable-triggers</code>: disable triggers while loading the dump.
+- <code>-c/--clean</code>: clean (drop) database objects before recreating them.
 
 ###Listing running queries
 ```sql
