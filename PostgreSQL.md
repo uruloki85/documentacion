@@ -62,6 +62,8 @@ sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc 
 - <code>-Fc/--format=c</code>: file format will be custom (c).
 - <code>-s/--schema-only</code>: dump only the schema.
 - <code>-a/--data-only</code>: dump only the data.
+- <code>--disable-triggers</code>: disable triggers while loading the dump.
+- <code>-c/--clean</code>: clean (drop) database objects before recreating them.
 
 ###To load a dump
 ```
