@@ -88,6 +88,13 @@ SELECT array_length(regexp_matches(d.stable_id,'^EGAD00001\d+'), 1) > 0 FROM dat
 ```
 Returns true or false if the stable id matches or not the pattern.
 
+###Databases size
+To list all databases and their size:
+```
+sabela@pc:~$ psql -U postgres
+postgres=# \l+
+```
+
 ###Access tables in another Postgres DB
 * Install the **postgres_fdw** extension using CREATE EXTENSION.
 ```
