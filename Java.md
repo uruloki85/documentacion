@@ -7,6 +7,12 @@ List<String> filenames = fileDataList.stream()
                                       .map(file -> file.getFilename())
                                       .collect(Collectors.toList());
 ```
+* Convert a List into a comma separated String:
+```
+String statuses = statusList.stream()
+                            .map(status -> status.getStatus())
+                            .collect(Collectors.joining(","));
+```
 
 ###Guava library
 * Extract one field from a list without looping over it:
