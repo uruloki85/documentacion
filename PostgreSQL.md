@@ -74,7 +74,7 @@ sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_
 ###To load a table from a CSV
 ```
 sabela@pc:~$ psql -h hostname -p port -d db_name -U username
-egapro_staging_dev=> \copy table_name(column1,column2,...) from filename.csv with csv delimiter ';';
+db_name=> \copy table_name(column1,column2,...) from filename.csv with csv delimiter ';';
 ```
 
 ###Listing running queries
