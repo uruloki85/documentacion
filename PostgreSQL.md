@@ -71,6 +71,12 @@ sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_
 - <code>--disable-triggers</code>: disable triggers while loading the dump.
 - <code>-c/--clean</code>: clean (drop) database objects before recreating them.
 
+###To load a table from a CSV
+```
+sabela@pc:~$ psql -h sql01.local -p 5432 -d egapro_staging_dev -U microaccounts_de
+egapro_staging_dev=> \copy stg_user.submitter_excel(emails,submission_type,box_number,country,region,institute,map,afiliation_project,center_name,account_accession,comments) from  EGA_DROP_BOXES_2016-08-24_submission_accounts.csv with csv delimiter ';';
+```
+
 ###Listing running queries
 ```sql
 SELECT pid, datid, datname, state, query 
