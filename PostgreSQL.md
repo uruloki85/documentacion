@@ -76,6 +76,10 @@ sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_
 sabela@pc:~$ psql -h hostname -p port -d db_name -U username
 db_name=> \copy table_name(column1,column2,...) from filename.csv with csv delimiter ';';
 ```
+or
+```
+cat filename.csv" | psql -h hostname -p port -U username -c "copy table_name(column1,column2,...) from stdin using delimiters ';' csv" db_name
+```
 
 ###Listing running queries
 ```sql
