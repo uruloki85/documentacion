@@ -157,3 +157,10 @@ CREATE FOREIGN TABLE fdw_audit.audit_file (
 )
 SERVER mysql_server OPTIONS (dbname 'remote_mysql_database_name', table_name 'remote_table_name');
 ```
+
+###Filter by date
+```
+select s.*
+from sample_table s
+where s.edited_at::date = '2016-10-25';
+```
