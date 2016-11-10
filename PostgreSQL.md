@@ -83,7 +83,7 @@ cat filename.csv" | psql -h hostname -p port -U username -c "copy table_name(col
 
 ###Listing running queries
 ```sql
-SELECT pid, datid, datname, state, query 
+SELECT pid, datid, datname, state, xact_start, query 
 FROM pg_stat_activity 
 WHERE usename='microaccounts_dev' and state='active';
 ```
