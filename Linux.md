@@ -29,6 +29,11 @@ Just like exclude file it's possible to exclude/include directories through <cod
 ```
 grep --exclude-dir={dir1,dir2,*.dst} -rnw '/path/to/somewhere/' -e "pattern"
 ```
+##egrep
+```
+egrep -o 'X-CLIENT-IP-ADDRESS=\[[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\]' all_grep_results | egrep -o '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | sort | uniq
+```
+* <code>-o</code> just return the string that matches the pattern
 
 ##Run a process already started in background
 If you run a process and later you realize that it will last very long, you can send it to execute in background although it's already running:
