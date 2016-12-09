@@ -107,19 +107,19 @@ postgres=# \l+
 
 ###Access tables in another Postgres DB
 * Install the **postgres_fdw** extension using CREATE EXTENSION.
-```
+```sql
 CREATE EXTENSION postgres_fdw;
 ```
 * Create a foreign server object, using CREATE SERVER, to represent each remote database you want to connect to. Specify connection information, except user and password, as options of the server object.
-```
+```sql
 CREATE SERVER erapro_server FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'localhost', dbname 'erapro', port '4567');
 ```
 * Create a user mapping, using CREATE USER MAPPING, for each database user you want to allow to access each foreign server. Specify the remote user name and password to use as user and password options of the user mapping.
-```
+```sql
 CREATE USER MAPPING FOR local_username SERVER erapro_server OPTIONS (user 'remote_username', password 'remote_password');
 ```
 * Create a foreign table, using CREATE FOREIGN TABLE, for each remote table you want to access. The columns of the foreign table must match the referenced remote table. You can, however, use table and/or column names different from the remote table's, if you specify the correct remote names as options of the foreign table object.
-```
+```sql
 CREATE FOREIGN TABLE fdw_erapro.analysis_ega_dataset
 (
   analysis_id character varying(15) NOT NULL,
@@ -128,7 +128,7 @@ CREATE FOREIGN TABLE fdw_erapro.analysis_ega_dataset
 SERVER erapro_server OPTIONS (schema_name 'public');
 ```
 * Grant privileges
-```
+```sql
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO microaccounts;
 ```
 ### Installation path
@@ -138,19 +138,19 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO microaccounts;
 ###Access tables in a Mysql DB
 * Install the extension following the steps: https://github.com/EnterpriseDB/mysql_fdw
 * Add the extension to Postgres:
-```
+```sql
 CREATE EXTENSION mysql_fdw;
 ```
 * Create the server:
-```
+```sql
 CREATE SERVER mysql_server FOREIGN DATA WRAPPER mysql_fdw OPTIONS (host 'localhost', port '3306');
 ```
 * Create a user mapping:
-```
+```sql
 CREATE USER MAPPING FOR local_username SERVER mysql_server OPTIONS (username 'remote_username', password 'remote_password');
 ```
 * Create foreign tables:
-```
+```sql
 CREATE FOREIGN TABLE fdw_audit.audit_file (
   file_id serial,
   file_name varchar(1000) NOT NULL
@@ -159,7 +159,7 @@ SERVER mysql_server OPTIONS (dbname 'remote_mysql_database_name', table_name 're
 ```
 
 ###Filter by date
-```
+```sql
 select s.*
 from sample_table s
 where s.edited_at::date = '2016-10-25';
