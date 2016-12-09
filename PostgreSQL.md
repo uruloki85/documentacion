@@ -164,3 +164,18 @@ select s.*
 from sample_table s
 where s.edited_at::date = '2016-10-25';
 ```
+
+###Using XPATH and unnest()
+```sql
+SELECT dt.id AS sample_id,
+    dt.ega_stable_id AS sample_stable_id,
+    (xpath('//TAG/text()'::text, dt._xml))[1]::character varying AS tag,
+    (xpath('//VALUE/text()'::text, dt._xml))[1]::character varying AS value
+FROM ( 
+	SELECT dt_1.id,
+		dt_1.ega_stable_id,
+		dt_1.ebi_xml,
+		unnest(xpath('/SAMPLE_SET/SAMPLE[1]/SAMPLE_ATTRIBUTES/SAMPLE_ATTRIBUTE'::text, dt_1.ebi_xml)) AS _xml
+	FROM sample_table dt_1
+) dt
+```
