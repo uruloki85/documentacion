@@ -88,7 +88,7 @@ FROM pg_stat_activity
 WHERE usename='microaccounts_dev' and state='active';
 ```
 To kill a specific query:
-```
+```sql
 SELECT pg_cancel_backend(pid);
 ```
 
