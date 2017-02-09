@@ -25,7 +25,7 @@ These 2 are equivalent:
     <h1 [hidden]="!name">Hello {{name}}!</h1>
 </div>
 ```
-* [ngModel]="name" -> binding from the html to the component variable (whatever is written in the input is set to the variable "name")
-* (ngModel)="name" -> binding from the component variable to the html (in the input the value of variable "name" is shown)
-* [(ngModel)]="name" -> 2 way binding
-* bindon-ngModel="name" -> canonical form of the 2 way binding
+* <code>[ngModel]="name"</code> -> binding from the html to the component variable (whatever is written in the input is set to the variable "name")
+* <code>(ngModel)="name"</code> -> binding from the component variable to the html (in the input the value of variable "name" is shown)
+* <code>[(ngModel)]="name"</code> -> 2 way binding
+* <code>bindon-ngModel="name"</code> -> canonical form of the 2 way binding
