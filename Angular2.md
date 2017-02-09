@@ -52,4 +52,4 @@ serverCalls.subscribe(
   err => console.error('***ERROR***', err)
 );
 ```
-Notice the <code>catch</code> block. If a call returns an error an <code>Observable</code> is returned so the next calls can be executed.
+Notice the <code>catch</code> block. If a call throws an error an <code>Observable</code> is returned and the following calls are executed (otherwise the flow is stopped).
