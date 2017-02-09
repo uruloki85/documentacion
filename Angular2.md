@@ -29,3 +29,27 @@ These 2 are equivalent:
 * <code>(ngModel)="name"</code> -> binding from the component variable to the html (in the input the value of variable "name" is shown)
 * <code>[(ngModel)]="name"</code> -> 2 way binding
 * <code>bindon-ngModel="name"</code> -> canonical form of the 2 way binding
+
+# Concurrent calls to back-end
+```javascript
+var serverCalls = Observable.forkJoin(
+    // Get the user
+    this.http.get(backendURL)
+      .map((res: any) => JSON.parse(res._body))
+      .catch(e => Observable.of({})),
+    // Get the institution
+    this.http.get(backendURL)
+      .map((res: any) => JSON.parse(res._body))
+      .catch(e => Observable.of({}))
+  );
+
+serverCalls.subscribe(
+  data => {
+    item.user = data[0];
+    item.institution = data[1];
+    ...
+  },
+  err => console.error('***ERROR***', err)
+);
+```
+Notice the <code>catch</code> block. If a call returns an error an <code>Observable</code> is returned so the next calls can be executed.
