@@ -61,10 +61,10 @@ public getAllUserInstitutionBox(limit?, skip?): Observable<any> {
 
   return this.formService.list(this._type, skip, limit, 'id')
     .map((response: any) => response._embedded.user_institution_box)
-    .flatMap((user_institution_box: any[]) => {
-      if (user_institution_box.length > 0) {
+    .flatMap((list: any[]) => {
+      if (list.length > 0) {
         return Observable.forkJoin(
-          user_institution_box.map((item: any) => {
+          list.map((item: any) => {
             return Observable.forkJoin(
               this.formService.listRaw(item._links.user.href).catch(e => Observable.of({})),
               this.formService.listRaw(item._links.institution.href).catch(e => Observable.of({}))
