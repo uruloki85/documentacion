@@ -67,14 +67,10 @@ public getAllUserInstitutionBox(limit?, skip?): Observable<any> {
           user_institution_box.map((item: any) => {
             return Observable.forkJoin(
               this.formService.listRaw(item._links.user.href).catch(e => Observable.of({})),
-              this.formService.listRaw(item._links.institution.href).catch(e => Observable.of({})),
-              this.formService.listRaw(item._links.box.href).catch(e => Observable.of({})),
-              this.formService.listRaw(item._links.consortium.href).catch(e => Observable.of({}))
+              this.formService.listRaw(item._links.institution.href).catch(e => Observable.of({}))
             ).map((data: any[]) => {
               item.user = data[0].username + ' [id: ' + data[0].id + ']';
               item.institution = data[1].institutionName + ' [id: ' + data[1].id + ']';
-              item.box = data[2].box + ' [id: ' + data[2].id + ']';
-              item.consortium = data[3].name + ' [id: ' + data[3].id + ']';
               return item;
             });
           })
