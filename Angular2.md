@@ -58,6 +58,7 @@ Notice the <code>catch</code> block. If a call throws an error an <code>Observab
 The first call returns an array. For each of the elements of the array, 4 concurrent calls are done and the array updated.
 ```javascript
 public getAllUserInstitutionBox(limit?, skip?): Observable<any> {
+
   return this.formService.list(this._type, skip, limit, 'id')
     .map((response: any) => response._embedded.user_institution_box)
     .flatMap((user_institution_box: any[]) => {
@@ -79,6 +80,7 @@ public getAllUserInstitutionBox(limit?, skip?): Observable<any> {
           })
         )
       }
+      return Observable.of({})
     });
 }
 ```
