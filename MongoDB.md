@@ -1,7 +1,17 @@
 [MongoDB] (http://docs.mongodb.org/manual/)
 =======
+# Dump
+Binary dump:
+```bash
+sdelatorre@frontendtest01:~> /iso/tmp/mongodump --host devil.local --db submitter_dev --collection submissionModel --query '{"submitterId":"ega-box-211"}' --out submissions_ega-box-211_dump
 
-# Most used commands:
+sdelatorre@app01:~> /iso/tmp/mongodump --host sql01 --db auth --collection userManagementModel --out sql01_auth_user_management_model_dump
+```
+# Load a dump
+```
+mongorestore --collection userManagementModel --db auth sql01_auth_user_management_model_dump.bson
+```
+# Inside mongo
 * List all DBs available
 ```json
 show dbs
@@ -18,18 +28,7 @@ show collections
 ```json
 db.collection_name.drop()
 ```
-# Dump
-Binary dump:
-```bash
-sdelatorre@frontendtest01:~> /iso/tmp/mongodump --host devil.local --db submitter_dev --collection submissionModel --query '{"submitterId":"ega-box-211"}' --out submissions_ega-box-211_dump
-
-sdelatorre@app01:~> /iso/tmp/mongodump --host sql01 --db auth --collection userManagementModel --out sql01_auth_user_management_model_dump
-```
-# Load a dump
-```
-mongorestore --collection userManagementModel --db auth sql01_auth_user_management_model_dump.bson
-```
-# Edit a value ($set)
+## Edit a value ($set)
 ```json
 db.collection_name.update(
 	{ "field_name" : "condition_value" }, // Query
@@ -41,7 +40,7 @@ db.collection_name.update(
 	{multi: true} // All documents that matches the condition
 )
 ```
-## Complete example
+### Complete example
 * Original data
 ```json
 "_id" : ObjectId("54e5b724e4b01197ed492f0a"),
@@ -84,7 +83,7 @@ Use <code>$</code> if you don't know the position in the array of the element yo
 	]
 }
 ```
-# Delete a field ($unset)
+## Delete a field ($unset)
 * We want to remove the field "0" that apperars inside "studyref"
 ```json
 "_id" : ObjectId("54e5b724e4b01197ed492f0a"),
@@ -104,7 +103,7 @@ db.analysisModel.update(
    { $unset: { "xmlRootElement.analysis.0.studyref.0": ""} }
 )
 ```
-# Order a list (sort())
+## Order a list (sort())
 1 for ascendent order, -1 for descendent:
 ```json
 db.notificationModel.find().sort({ "serviceMessage.header.timestamp": -1 }).pretty()
@@ -121,7 +120,7 @@ Where documents follow this structure
 	}
 }
 ```
-# Search in an array
+## Search in an array
 If the array contains Strings:
 ```json
 db.userModel.find( {	
@@ -138,7 +137,7 @@ db.userModel.find( {
 	}
 } ).pretty()
 ```
-# Update an element of an array
+## Update an element of an array
 Original document:
 ```json
 {
@@ -160,7 +159,7 @@ db.runFileTypeModel.update(
 ```
 Use $ when you don't know the position of the element in the array.
 
-# Convert a simple field into a complex structure using the original field value
+## Convert a simple field into a complex structure using the original field value
 Original data:
 ```json
 {
@@ -188,7 +187,7 @@ Resulting data:
 }
 ```
 
-# Look for a string contained in a field
+## Look for a string contained in a field
 ```json
 db.users.findOne({"username" : {$regex : ".*son.*"}})
 ```
