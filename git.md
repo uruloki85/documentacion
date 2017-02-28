@@ -5,3 +5,7 @@ The status of the local repository will be the same of the remote one.
 ```
 git reset --hard origin/your_branch
 ```
+## Merge a specific commit
+```
+git cherry-pick commit_hash
+```
