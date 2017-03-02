@@ -178,4 +178,17 @@ FROM (
 		unnest(xpath('/SAMPLE_SET/SAMPLE[1]/SAMPLE_ATTRIBUTES/SAMPLE_ATTRIBUTE'::text, dt_1.ebi_xml)) AS _xml
 	FROM sample_table dt_1
 ) dt
+
+select unnested.ega_dac_id, 
+	(xpath('@email'::text, unnested.dac_xml))[1]::character varying AS email,
+	(xpath('@name'::text, unnested.dac_xml))[1]::character varying as name,
+	(xpath('@organisation'::text, unnested.dac_xml))[1]::character varying as organisation,
+	(xpath('@telephone_number'::text, unnested.dac_xml))[1]::character varying as telephone_number,
+	(xpath('@main_contact'::text, unnested.dac_xml))[1]::character varying as main_contact
+from (
+	select d.ega_dac_id,
+		unnest(xpath('/DAC_SET/DAC[1]/CONTACTS/CONTACT', d.ega_dac_xml)) AS dac_xml
+	from stg_erapro.ega_dac d 
+)unnested
+where unnested.ega_dac_id='EGAC0
 ```
