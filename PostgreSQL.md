@@ -177,7 +177,7 @@ FROM (
 		dt_1.ebi_xml,
 		unnest(xpath('/SAMPLE_SET/SAMPLE[1]/SAMPLE_ATTRIBUTES/SAMPLE_ATTRIBUTE'::text, dt_1.ebi_xml)) AS _xml
 	FROM sample_table dt_1
-) dt
+) dt;
 
 select unnested.ega_dac_id, 
 	(xpath('@email'::text, unnested.dac_xml))[1]::character varying AS email,
@@ -189,6 +189,5 @@ from (
 	select d.ega_dac_id,
 		unnest(xpath('/DAC_SET/DAC[1]/CONTACTS/CONTACT', d.ega_dac_xml)) AS dac_xml
 	from stg_erapro.ega_dac d 
-)unnested
-where unnested.ega_dac_id='EGAC0
+)unnested;
 ```
