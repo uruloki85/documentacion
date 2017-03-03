@@ -44,11 +44,8 @@ sabela@pc:~$ psql -d erapro -U microaccount
 ```
 sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```
-## To load a dump in a SQL format
-```
-sabela@pc:~$ psql -h host -d database_name -U user -f file.sql -W
-```
-## To do a dump
+## Doing dumps
+### To do a custom dump
 ```
 sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc -s > sql01_crg_erapro_schema.backup
 ```
@@ -61,7 +58,8 @@ sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc 
 - <code>-s/--schema-only</code>: dump only the schema.
 - <code>-a/--data-only</code>: dump only the data.
 
-## To load a dump
+## Loading dumps
+### Custom format
 ```
 sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_dev -W -Fc -a < sql01_crg_erapro_schema.backup
 ```
@@ -69,7 +67,13 @@ sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_
 - <code>--disable-triggers</code>: disable triggers while loading the dump.
 - <code>-c/--clean</code>: clean (drop) database objects before recreating them.
 
-## To load a table from a CSV
+### SQL format
+```
+sabela@pc:~$ psql -h host -d database_name -U user -f file.sql -W
+```
+
+## CSV format
+The following command populates a table with the content of the CSV file:
 ```
 sabela@pc:~$ psql -h hostname -p port -d db_name -U username
 db_name=> \copy table_name(column1,column2,...) from filename.csv with csv delimiter ';';
