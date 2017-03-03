@@ -85,6 +85,13 @@ or
 ```
 cat filename.csv" | psql -h hostname -p port -U username -c "copy table_name(column1,column2,...) from stdin using delimiters ';' csv" db_name
 ```
+The following command copies the result of a SQL command to a CSV file:
+```
+psql -h localhost -p 5432 -U microaccounts_dev -c "copy (
+select *
+from beacon_data
+where dataset_stable_id='XXXX') to stdin with csv delimiter ';'" ega_beacon_dev > file.csv
+```
 ## Listing running queries
 ```sql
 SELECT pid, datid, datname, state, xact_start, query 
