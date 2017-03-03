@@ -1,5 +1,5 @@
 PostgreSQL
---------------
+==========
 # Essential commands
 * Login as **postgres** user (default administrator):
 ```
