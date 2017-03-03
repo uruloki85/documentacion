@@ -76,6 +76,7 @@ sabela@pc:~$ psql -h host -d database_name -U user -f file.sql -W
 ```
 
 ### CSV format
+#### From CSV to DB
 The following command populates a table with the content of the CSV file:
 ```
 sabela@pc:~$ psql -h hostname -p port -d db_name -U username
@@ -85,7 +86,8 @@ or
 ```
 cat filename.csv" | psql -h hostname -p port -U username -c "copy table_name(column1,column2,...) from stdin using delimiters ';' csv" db_name
 ```
-The following command copies the result of a SQL command to a CSV file:
+#### From DB to CSV
+The following command copies the result of a SQL command into a CSV file:
 ```
 psql -h localhost -p 5432 -U microaccounts_dev -c "copy (
 select *
