@@ -1,6 +1,6 @@
 PostgreSQL
 --------------
-
+# Essential commands
 * Login as **postgres** user (default administrator):
 ```
 sabela@pc:~$ sudo -i -u postgres
@@ -42,15 +42,15 @@ sabela@pc:~$ sudo -i -u microaccounts
 ```
 sabela@pc:~$ psql -d erapro -U microaccount
 ```
-###To determine PostgreSQL port:
+## To determine PostgreSQL port:
 ```
 sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```
-###To load a dump in a SQL format
+## To load a dump in a SQL format
 ```
 sabela@pc:~$ psql -h host -d database_name -U user -f file.sql -W
 ```
-###To do a dump
+## To do a dump
 ```
 sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc -s > sql01_crg_erapro_schema.backup
 ```
@@ -63,7 +63,7 @@ sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc 
 - <code>-s/--schema-only</code>: dump only the schema.
 - <code>-a/--data-only</code>: dump only the data.
 
-###To load a dump
+## To load a dump
 ```
 sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_dev -W -Fc -a < sql01_crg_erapro_schema.backup
 ```
@@ -71,7 +71,7 @@ sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_
 - <code>--disable-triggers</code>: disable triggers while loading the dump.
 - <code>-c/--clean</code>: clean (drop) database objects before recreating them.
 
-###To load a table from a CSV
+## To load a table from a CSV
 ```
 sabela@pc:~$ psql -h hostname -p port -d db_name -U username
 db_name=> \copy table_name(column1,column2,...) from filename.csv with csv delimiter ';';
@@ -80,8 +80,7 @@ or
 ```
 cat filename.csv" | psql -h hostname -p port -U username -c "copy table_name(column1,column2,...) from stdin using delimiters ';' csv" db_name
 ```
-
-###Listing running queries
+## Listing running queries
 ```sql
 SELECT pid, datid, datname, state, xact_start, query 
 FROM pg_stat_activity 
@@ -91,21 +90,18 @@ To kill a specific query:
 ```sql
 SELECT pg_cancel_backend(pid);
 ```
-
-###Pattern matching
-```sql
-SELECT array_length(regexp_matches(d.stable_id,'^EGAD00001\d+'), 1) > 0 FROM dataset d;
-```
-Returns true or false if the stable id matches or not the pattern.
-
-###Databases size
+## Databases size
 To list all databases and their size:
 ```
 sabela@pc:~$ psql -U postgres
 postgres=# \l+
 ```
+## Installation path
+* postgres.conf and pg_hba.conf: <code>/etc/postgresql/9.1/main/</code>
+* Binaries: <code>/usr/lib/postgresql/9.3/</code>
 
-###Access tables in another Postgres DB
+# Foreign Data Wrappers
+## FDW to a Postgres DB
 * Install the **postgres_fdw** extension using CREATE EXTENSION.
 ```sql
 CREATE EXTENSION postgres_fdw;
@@ -131,11 +127,8 @@ SERVER erapro_server OPTIONS (schema_name 'public');
 ```sql
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO microaccounts;
 ```
-### Installation path
-* postgres.conf and pg_hba.conf: <code>/etc/postgresql/9.1/main/</code>
-* Binaries: <code>/usr/lib/postgresql/9.3/</code>
 
-###Access tables in a Mysql DB
+## FDW to a Mysql DB
 * Install the extension following the steps: https://github.com/EnterpriseDB/mysql_fdw
 * Add the extension to Postgres:
 ```sql
@@ -157,15 +150,21 @@ CREATE FOREIGN TABLE fdw_audit.audit_file (
 )
 SERVER mysql_server OPTIONS (dbname 'remote_mysql_database_name', table_name 'remote_table_name');
 ```
+# Postgres SQL
+## Pattern matching
+```sql
+SELECT array_length(regexp_matches(d.stable_id,'^EGAD00001\d+'), 1) > 0 FROM dataset d;
+```
+Returns true or false if the stable id matches or not the pattern.
 
-###Filter by date
+## Filter by date
 ```sql
 select s.*
 from sample_table s
 where s.edited_at::date = '2016-10-25';
 ```
 
-###Using XPATH and unnest()
+## Using XPATH and unnest()
 ```sql
 SELECT dt.id AS sample_id,
     dt.ega_stable_id AS sample_stable_id,
