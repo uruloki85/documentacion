@@ -1,4 +1,4 @@
-[MongoDB] (http://docs.mongodb.org/manual/)
+[MongoDB](http://docs.mongodb.org/manual/)
 =======
 # Dump
 Binary dump:
