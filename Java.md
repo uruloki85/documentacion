@@ -1,6 +1,6 @@
-#Java
+# Java
 
-###Lambda expressions (Java 8)
+### Lambda expressions (Java 8)
 * Extract one field from a list without looping over it:
 ```java
 List<String> filenames = fileDataList.stream()
@@ -14,7 +14,7 @@ String statuses = statusList.stream()
                             .collect(Collectors.joining(","));
 ```
 
-###Guava library
+### Guava library
 * Extract one field from a list without looping over it:
 ```java
 // TODO replace with lambda expression after upgrading to java 8
