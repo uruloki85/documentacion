@@ -1,12 +1,12 @@
-#[Spring](http://spring.io/projects)
+# [Spring](http://spring.io/projects)
 
-###Fitxer de propietats YAML
+### Fitxer de propietats YAML
 Es poden crear tants fitxers com es vulgui, p.e., un per entorn: <code>application-dsv.yml</code>, <code>application-pre.yml</code> i <code>application-pro.yml</code>. 
 
 Després, al fitxer <code>application.properties</code> s'especifica l'entorn a utilitzar: <code>spring.profiles.active=dsv</code>.
 
 
-###Connexió a BDs
+### Connexió a BDs
 * Quan s'utilitza més d'una BD, cal especificar el <code>persistanceUnitName</code>. Es pot especificar el nom que es desitji.
 
 Si s'utilitza una classe Java per configurar:
@@ -124,7 +124,7 @@ public class Factura {
 }
 ```
 
-###[Protección contra ataques CSRF](http://docs.spring.io/spring-security/site/docs/3.2.4.RELEASE/reference/htmlsingle/#csrf)
+### [Protección contra ataques CSRF](http://docs.spring.io/spring-security/site/docs/3.2.4.RELEASE/reference/htmlsingle/#csrf)
 
 1. La protección por CSRF está activa por defecto cuando se configura Spring Security con clases Java.
 2. Si no se quiere usar, desactivar mediante (en nuestro caso ese método esta en la clase que configura el CAS):
@@ -173,7 +173,7 @@ $.ajax({
 ```
 Si no se incluye el token, el servidor devolverá el error *403 Forbidden*.
 
-###Generació del client de WS
+### Generació del client de WS
 Creació automàtica del client d'un web service a partir del WSDL en el <code>pom.xml</code>:
 ```xml
 <plugin>
@@ -200,7 +200,7 @@ Creació automàtica del client d'un web service a partir del WSDL en el <code>p
 </plugin>
 ```
 
-###Utilitzar un client de WS generat amb JAX-WS
+### Utilitzar un client de WS generat amb JAX-WS
 
 Creem el **bean** que s'injectarà al codi amb la configuració corresponent del web service:
 ```java
@@ -302,7 +302,7 @@ public class PersonaIdentitatHelperWS implements PersonaIdentitatHelper {
 }
 ```
 
-###Gestionar diversos idiomes
+### Gestionar diversos idiomes
 Primer cal configurar Spring per a que sigui possible canviar el <code>locale</code> de l'aplicació:
 ```java
 /**
@@ -365,7 +365,7 @@ Ara, per a que l'usuari pugui canviar l'idioma a voluntat, podem afegir el segü
 	</ul>
 </div>
 ```
-###QueryDSL
+### QueryDSL
 Per a utilitzar-lo amb una mongoDB cal afegir les següents dependències i el plugin al nostre <code>pom.xml</code>:
 ```xml
 
@@ -448,7 +448,7 @@ public class FacturaConfrontadorServiceImpl implements FacturaConfrontadorServic
 }
 ```
 
-###Añadir cookies en una request
+### Añadir cookies en una request
 Si utilizamos Chrome, abrimos la consola para desarroladores (Ctrl + Mayús. + i). En la pestaña **Resources > Cookies** podremos ver las cookies que existen en la página. Para añadir, vamos a la pestaña **Console** y ejecutamos el siguiente comando:
 ```javascript
 document.cookie="nombre_de_la_cookie=valor_de_la_cookie"
@@ -469,7 +469,7 @@ Después, desde Spring podemos capturarla así:
 Si Spring no encuentra la cookie en la request lanzará una excepción.
 
 
-###REST calls
+### REST calls
 Initialize a ```RestTemplate``` object in a ```@Configuration``` class. Be sure to add the ```JodaModule``` to the ```ObjectMapper``` that will be used by ```MappingJackson2HttpMessageConverter``` because it will serialize all ```DateTime``` fields using the milliseconds form (instead of a String conversion or other):
 ```java
   @Bean 
@@ -570,7 +570,7 @@ And this is the serialization that causes the error:
 }
 ```
 
-###[DBUnit](https://github.com/springtestdbunit/spring-test-dbunit)
+### [DBUnit](https://github.com/springtestdbunit/spring-test-dbunit)
 Helping tools for testing that uses SQL databases.
 * Add dependencies to pom.xml:
 ```xml
@@ -628,7 +628,7 @@ where <code>crg_sample</code> is the table's name and <code>id</code> and <code>
 ```
 **NOTE:** I haven't achived to get this annotation working well!
 
-###Call a stored procedure and extend repository funciontalities
+### Call a stored procedure and extend repository funciontalities
 * Add the stored procedure metadata in the @Entity class:
 ```java
 @Entity
