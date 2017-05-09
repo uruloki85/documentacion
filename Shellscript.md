@@ -28,4 +28,5 @@ $parallel_command &> /dev/null
 * <code>{}</code>: the input data will be inserted here.
 * <code>--joblog</code>: the log will be written in this file.
 * <code>-a</code>: input data is a file.
+
 <b>IMPORTANT</b>: Notice that the file must contain several entries (ending with newline) in order to execute more than processes.E.g. file.txt contains 2 entries, 2 jobs will be executed.
