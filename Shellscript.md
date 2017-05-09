@@ -26,7 +26,8 @@ echo "parallel command: $parallel_command"
 $parallel_command &> /dev/null
 ```
 * <code>{}</code>: the input data will be inserted here.
+* <code>-j10</code>: maximum number of jobs (processes) to execute.
 * <code>--joblog</code>: the log will be written in this file.
 * <code>-a</code>: input data is a file.
 
-<b>IMPORTANT</b>: Notice that the file must contain several entries (ending with newline) in order to execute more than processes.E.g. file.txt contains 2 entries, 2 jobs will be executed.
+<b>IMPORTANT</b>: Notice that the file must contain several entries (ending with newline) in order to execute more than processes. E.g. If file.txt contains 2 entries, 2 jobs will be executed (<code>-j10</code> will be the maximum number of jobs executed in parallel if the file contains 10 or more lines).
