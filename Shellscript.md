@@ -1,17 +1,17 @@
 # Shellscripting
 ## Arrays
 Length of an array:   
-```
+```bash
 array_length="${#arr[@]}"
 ```
 Iterate over an array:
-```
+```bash
 for (( i=0; i<$array_length-1; i++ )); do 
    echo "${arr[$i]}"
 done
 ```
 or
-```
+```bash
 for i in ${arr[@]}; do 
   echo $i; 
 done
