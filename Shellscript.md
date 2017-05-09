@@ -18,9 +18,12 @@ done
 ```
 ## Parallel
 For running several commands in parallel.
-```
+```bash
 curl_sample="curl -X POST -H \"X-Token: $token\" -H \"Content-type: application/json\" $SUBMITTER_URL/submissions/$submission_id/samples -d {}"
-parallel -j10 --joblog parallel_log -a file.txt $curl_sample
+parallel_command="parallel -j10 --joblog parallel_log -a file.txt $curl_sample"
+echo "parallel command: $parallel_command"
+# Run the command discarding output
+$parallel_command &> /dev/null
 ```
 -<code>{}</code>: the input data will be inserted here.
 -<code>--joblog</code>: the log will be written in this file.
