@@ -1,6 +1,6 @@
 # Shellscripting
 ## Arrays
-Length of an array    
+Length of an array:   
 ```
 array_length="${#arr[@]}"
 ```
@@ -15,7 +15,7 @@ or
 for i in ${arr[@]}; do 
   echo $i; 
 done
-
+```
 ## Parallel
 For running several commands in parallel.
 ```
