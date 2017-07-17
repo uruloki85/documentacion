@@ -9,3 +9,13 @@ mysql -u user_name -p database_name < /path/to/file/name.sql
 ```
 mysqldump -u user_name -p database_name > /path/to/file/name.sql
 ```
+
+### Managing MySQL server
+* Status
+```
+service mysql status
+```
+* Start/stop
+```
+service mysql start/stop
+```
