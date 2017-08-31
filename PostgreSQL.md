@@ -40,14 +40,8 @@ sabela@pc:~$ sudo -i -u microaccounts
 ```
 sabela@pc:~$ psql -d erapro -U microaccount
 ```
-## To determine PostgreSQL port:
-```
-sabela@pc:~$ sudo netstat -plunt | grep postgres
-```
 ## Sending output to a file
 ```
-#!/bin/bash
-
 psql -h host_name -p 5432 -d database_name -U username -W -c "COPY ( SELECT ... ) TO STDIN WITH CSV DELIMITER ';'" > file_name.csv
 ```
 
@@ -117,6 +111,11 @@ To list all databases and their size:
 sabela@pc:~$ psql -U postgres
 postgres=# \l+
 ```
+## To determine PostgreSQL port:
+```
+sabela@pc:~$ sudo netstat -plunt | grep postgres
+```
+
 ## Installation path
 * postgres.conf and pg_hba.conf: <code>/etc/postgresql/9.1/main/</code>
 * Binaries: <code>/usr/lib/postgresql/9.3/</code>
