@@ -44,6 +44,13 @@ sabela@pc:~$ psql -d erapro -U microaccount
 ```
 sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```
+## Sending output to a file
+```
+#!/bin/bash
+
+psql -h host_name -p 5432 -d database_name -U username -W -c "COPY ( SELECT ... ) TO STDIN WITH CSV DELIMITER ';'" > file_name.csv
+```
+
 ## Doing dumps
 ### Custom format
 <code>pg_dump</code>
