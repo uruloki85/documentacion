@@ -1,5 +1,18 @@
 # Table of contents
 1. [Essential commands](#essential-commands)
+ 1. [Sending output to a file](#sending-output-to-file)
+ 2. [Doing dumps](#doing-dumps)
+  1. [Custom format](#doing-custom-format)
+ 3. [Loading dumps](#loading-dumps)
+  1. [Custom format](#loading-custom-format)
+  2. [SQL format](#sql-format)
+  3. [CSV format](#csv-format)
+   1. [From CSV to DB](#csv-to-db)
+   2. [From DB to CSV](#db-to-csv)
+ 4. [Listing running queries](#running-queries)
+ 5. [Databases size](#db-size)
+ 6. [To determine PostgreSQL port](#postgres-port)
+ 7. [Installation path](#installation-path)
 2. [Foreign Data Wrappers](#fdw)
 
 <a name="essential-commands"></a>
@@ -45,12 +58,14 @@ sabela@pc:~$ sudo -i -u microaccounts
 ```
 sabela@pc:~$ psql -d erapro -U microaccount
 ```
+<a name="send-output-to-file"></a>
 ## Sending output to a file
 ```
 psql -h host_name -p 5432 -d database_name -U username -W -c "COPY ( SELECT ... ) TO STDIN WITH CSV DELIMITER ';'" > file_name.csv
 ```
-
+<a name="doing-dumps"></a>
 ## Doing dumps
+<a name="doing-custom-format"></a>
 ### Custom format
 <code>pg_dump</code>
 ```
@@ -65,7 +80,9 @@ sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc 
 - <code>-s/--schema-only</code>: dump only the schema.
 - <code>-a/--data-only</code>: dump only the data.
 
+<a name="loading-dumps"></a>
 ## Loading dumps
+<a name="loading-custom-format"></a>
 ### Custom format
 <code>pg_restore</code>
 ```
@@ -75,13 +92,15 @@ sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_
 - <code>--disable-triggers</code>: disable triggers while loading the dump.
 - <code>-c/--clean</code>: clean (drop) database objects before recreating them.
 
+<a name="sql-format"></a>
 ### SQL format
 <code>psql</code>
 ```
 sabela@pc:~$ psql -h host -d database_name -U user -f file.sql -W
 ```
-
+<a name="csv-format"></a>
 ### CSV format
+<a name="csv-to-db"></a>
 #### From CSV to DB
 The following command populates a table with the content of the CSV file:
 ```
@@ -92,6 +111,7 @@ or
 ```
 cat filename.csv" | psql -h hostname -p port -U username -c "copy table_name(column1,column2,...) from stdin using delimiters ';' csv" db_name
 ```
+<a name="db-to-csv"></a>
 #### From DB to CSV
 The following command copies the result of a SQL command into a CSV file:
 ```
@@ -100,6 +120,7 @@ select *
 from beacon_data
 where dataset_stable_id='XXXX') to stdin with csv delimiter ';'" ega_beacon_dev > file.csv
 ```
+<a name="running-queries"></a>
 ## Listing running queries
 ```sql
 SELECT pid, datid, datname, state, xact_start, query 
@@ -110,23 +131,26 @@ To kill a specific query:
 ```sql
 SELECT pg_cancel_backend(pid);
 ```
+<a name="db-size"></a>
 ## Databases size
 To list all databases and their size:
 ```
 sabela@pc:~$ psql -U postgres
 postgres=# \l+
 ```
-## To determine PostgreSQL port:
+<a name="postgres-port"></a>
+## To determine PostgreSQL port
 ```
 sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```
-
+<a name="installation-path"></a>
 ## Installation path
 * postgres.conf and pg_hba.conf: <code>/etc/postgresql/9.1/main/</code>
 * Binaries: <code>/usr/lib/postgresql/9.3/</code>
 
 <a name="fdw"></a>
 # Foreign Data Wrappers 
+<a name="fdw-to-postgres"></a>
 ## FDW to a Postgres DB
 * Install the **postgres_fdw** extension using CREATE EXTENSION.
 ```sql
@@ -153,7 +177,7 @@ SERVER erapro_server OPTIONS (schema_name 'public');
 ```sql
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO microaccounts;
 ```
-
+<a name="fdw-to-mysql"></a>
 ## FDW to a Mysql DB
 * Install the extension following the steps: https://github.com/EnterpriseDB/mysql_fdw
 * Add the extension to Postgres:
@@ -176,20 +200,23 @@ CREATE FOREIGN TABLE fdw_audit.audit_file (
 )
 SERVER mysql_server OPTIONS (dbname 'remote_mysql_database_name', table_name 'remote_table_name');
 ```
+<a name="postgres-sql"></a>
 # Postgres SQL
+<a name="pattern-matching"></a>
 ## Pattern matching
 ```sql
 SELECT array_length(regexp_matches(d.stable_id,'^EGAD00001\d+'), 1) > 0 FROM dataset d;
 ```
 Returns true or false if the stable id matches or not the pattern.
 
+<a name="essential-commands"></a>
 ## Filter by date
 ```sql
 select s.*
 from sample_table s
 where s.edited_at::date = '2016-10-25';
 ```
-
+<a name="xpath-unnest"></a>
 ## Using XPATH and unnest()
 ```sql
 SELECT dt.id AS sample_id,
@@ -216,6 +243,7 @@ from (
 	from stg_erapro.ega_dac d 
 )unnested;
 ```
+<a name="using-loops"></a>
 ## Using loops
 Useful when the query lasts for very long and we want to see how the execution is going.
 
