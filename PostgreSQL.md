@@ -238,8 +238,7 @@ EXIT WHEN _offset > _total_rows ;
 	INSERT INTO table2(column1, column2, ...)
 	SELECT DISTINCT column1, ...
 	FROM (
-		SELECT t.column1,
-			...
+		SELECT t.column1, ...
 		FROM table1 t
 		order by t.column1
 		limit _limit offset _offset
