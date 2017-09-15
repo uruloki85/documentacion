@@ -210,3 +210,49 @@ from (
 	from stg_erapro.ega_dac d 
 )unnested;
 ```
+## Using loops
+Useful when the query lasts too long and we want to commit things in small batches.
+NOTE: Always use ORDER BY when using limit. Otherwise, the result may be unpredicable!
+```sql
+CREATE OR REPLACE FUNCTION tmp.insert_rows()
+  RETURNS integer AS
+$BODY$
+DECLARE
+	_limit integer;
+	_offset integer;
+	_total_rows integer;
+BEGIN
+_limit=5000;
+_offset=2000;
+_total_runs=0;
+
+select count(*) into _total_rows
+from table1;
+
+RAISE NOTICE '_total_rows=%', _total_rows;
+
+LOOP 
+EXIT WHEN _offset > _total_rows ; 
+	RAISE NOTICE 'Inside loop. _offset=%', _offset;
+	
+	INSERT INTO table2(column1, column2, ...)
+	SELECT DISTINCT column1, ...
+	FROM (
+		SELECT t.column1,
+			...
+		FROM table1 t
+		order by t.column1
+		limit _limit offset _offset
+	)subq;
+	
+	_offset=_offset+_limit;	
+END LOOP;
+
+RAISE NOTICE 'End loop. _offset=%', _offset;
+
+RETURN _offset;
+
+END;
+$BODY$
+LANGUAGE plpgsql;
+```
