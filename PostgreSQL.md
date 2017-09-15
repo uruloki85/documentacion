@@ -1,4 +1,9 @@
-# Essential commands
+# Table of contents
+1. [Essential commands](#essential-commands)
+2. [Foreign Data Wrappers](#fdw)
+
+
+# Essential commands <a name="essential-commands"></a>
 * Login as **postgres** user (default administrator):
 ```
 sabela@pc:~$ sudo -i -u postgres
@@ -120,7 +125,7 @@ sabela@pc:~$ sudo netstat -plunt | grep postgres
 * postgres.conf and pg_hba.conf: <code>/etc/postgresql/9.1/main/</code>
 * Binaries: <code>/usr/lib/postgresql/9.3/</code>
 
-# Foreign Data Wrappers
+# Foreign Data Wrappers <a name="fdw"></a>
 ## FDW to a Postgres DB
 * Install the **postgres_fdw** extension using CREATE EXTENSION.
 ```sql
