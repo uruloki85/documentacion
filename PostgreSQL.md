@@ -1,19 +1,26 @@
 # Table of contents
 1. [Essential commands](#essential-commands)
 	1. [Sending output to a file](#sending-output-to-file)
-	2. [Doing dumps](#doing-dumps)
+	1. [Doing dumps](#doing-dumps)
 		1. [Custom format](#doing-custom-format)
-	3. [Loading dumps](#loading-dumps)
+	1. [Loading dumps](#loading-dumps)
 		1. [Custom format](#loading-custom-format)
-		2. [SQL format](#sql-format)
-		3. [CSV format](#csv-format)
+		1. [SQL format](#sql-format)
+		1. [CSV format](#csv-format)
 			1. [From CSV to DB](#csv-to-db)
-			2. [From DB to CSV](#db-to-csv)
-	4. [Listing running queries](#running-queries)
-	5. [Databases size](#db-size)
-	6. [To determine PostgreSQL port](#postgres-port)
-	7. [Installation path](#installation-path)
-2. [Foreign Data Wrappers](#fdw)
+			1. [From DB to CSV](#db-to-csv)
+	1. [Listing running queries](#running-queries)
+	1. [Databases size](#db-size)
+	1. [To determine PostgreSQL port](#postgres-port)
+	1. [Installation path](#installation-path)
+1. [Foreign Data Wrappers](#fdw)
+	1. [FDW to a Postgres DB](#fdw-to-postgres)
+	1. [FDW to a Mysql DB](#fdw-to-mysql)
+1. [Postgres SQL](#postgres-sql)
+	1. [Pattern matching](#pattern-matching)
+	1. [Filter by date](#filter-by-date)
+	1. [Using XPATH and unnest()](#xpath-unnest)
+	1. [Using loops](#using-loops)
 
 <a name="essential-commands"></a>
 # Essential commands
@@ -209,7 +216,7 @@ SELECT array_length(regexp_matches(d.stable_id,'^EGAD00001\d+'), 1) > 0 FROM dat
 ```
 Returns true or false if the stable id matches or not the pattern.
 
-<a name="essential-commands"></a>
+<a name="filter-by-date"></a>
 ## Filter by date
 ```sql
 select s.*
