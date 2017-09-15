@@ -211,7 +211,8 @@ from (
 )unnested;
 ```
 ## Using loops
-Useful when the query lasts too long and we want to commit things in small batches.
+Useful when the query lasts for very long and we want to see how the execution is going.
+
 NOTE: Always use ORDER BY when using limit. Otherwise, the result may be unpredicable!
 ```sql
 CREATE OR REPLACE FUNCTION tmp.insert_rows()
