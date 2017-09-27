@@ -47,6 +47,7 @@ If you run a process and later you realize that it will last very long, you can 
 * Run the process.
 * Ctrl + AD: dettaches the process using <code>screen</code> (linux command). It keeps running in background.
 * <code>screen -r</code>: to recover it. You will see the command's output.
+* <code>screen -D -R screen_name</code>: to recover a screen which is attached somewhere (it dettaches the screen from that other place).
 
 ### Way 3
 With <code>nohup</code> the process runs in the background from the beginning of its execution:
