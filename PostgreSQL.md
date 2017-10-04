@@ -297,3 +297,30 @@ END;
 $BODY$
 LANGUAGE plpgsql;
 ```
+## Check empty string
+```
+CREATE OR REPLACE FUNCTION tool.check_not_empty(_value text)
+RETURNS boolean AS
+----------------------------------------------------------------
+-- Returns TRUE if the string is not null and not empty ('').
+-- FALSE otherwise.
+--select tool.check_not_empty(''); --> false
+--select tool.check_not_empty(null); --> false
+--select tool.check_not_empty('hola'); --> true
+--select tool.check_not_empty(' '); --> false
+--select tool.check_not_empty('       '); --> false
+--select tool.check_not_empty('    h   '); --> true
+----------------------------------------------------------------
+$BODY$
+BEGIN
+
+IF (trim(both from _value) = '') IS FALSE THEN
+	return TRUE;
+ELSE
+	return FALSE;
+END IF;
+
+END
+$BODY$
+LANGUAGE plpgsql;
+```
