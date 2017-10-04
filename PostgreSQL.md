@@ -300,7 +300,7 @@ LANGUAGE plpgsql;
 ```
 <a name="check-emtpy-string"></a>
 ## Check empty string
-```
+```sql
 CREATE OR REPLACE FUNCTION tool.check_not_empty(_value text)
 RETURNS boolean AS
 ----------------------------------------------------------------
