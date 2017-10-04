@@ -21,6 +21,7 @@
 	1. [Filter by date](#filter-by-date)
 	1. [Using XPATH and unnest()](#xpath-unnest)
 	1. [Using loops](#using-loops)
+	1. [Check empty string](#check-emtpy-string)
 
 <a name="essential-commands"></a>
 # Essential commands
@@ -297,6 +298,7 @@ END;
 $BODY$
 LANGUAGE plpgsql;
 ```
+<a name="check-emtpy-string"></a>
 ## Check empty string
 ```
 CREATE OR REPLACE FUNCTION tool.check_not_empty(_value text)
