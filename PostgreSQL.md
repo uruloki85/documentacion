@@ -67,7 +67,7 @@ sabela@pc:~$ sudo -i -u microaccounts
 ```
 sabela@pc:~$ psql -d erapro -U microaccount
 ```
-<a name="send-output-to-file"></a>
+<a name="sending-output-to-file"></a>
 ## Sending output to a file
 ```
 psql -h host_name -p 5432 -d database_name -U username -W -c "COPY ( SELECT ... ) TO STDIN WITH CSV DELIMITER ';'" > file_name.csv
