@@ -20,6 +20,7 @@
 	1. [Pattern matching](#pattern-matching)
 	1. [Filter by date](#filter-by-date)
 	1. [Using XPATH and unnest()](#xpath-unnest)
+	1. [Sorting in combination with unnest](#sorting-with-unnest)
 	1. [Using loops](#using-loops)
 	1. [Check empty string](#check-emtpy-string)
 
@@ -250,6 +251,44 @@ from (
 		unnest(xpath('/DAC_SET/DAC[1]/CONTACTS/CONTACT', d.ega_dac_xml)) AS dac_xml
 	from stg_erapro.ega_dac d 
 )unnested;
+```
+<a name="sorting-with-unnest"></a>
+## Sorting in combination with unnest
+```sql
+select 
+	dt.ega_stable_id, 
+	array_agg(distinct dt.email order by dt.email) as erapro_emails, 
+	array_agg(distinct dt.names order by dt.names) as erapro_names,
+	array_agg(distinct audit.email order by audit.email) as audit_emails,
+	array_agg(distinct audit.name order by audit.name) as audit_names,
+	-- including EGAPRO info
+	array_agg(distinct cont.email order by cont.email) AS egapro_emails,
+	array_agg(distinct cont.name order by cont.name) AS egapro_names
+from (
+	select distinct dt.id,
+		dt.ega_stable_id, 
+		unnest(xpath('/DAC_SET/DAC[1]/CONTACTS/CONTACT/@email'::text, dt.ebi_xml))::text as email,
+		unnest(xpath('/DAC_SET/DAC[1]/CONTACTS/CONTACT/@name'::text, dt.ebi_xml))::text as names
+	from fdw_egapro.dac_table dt
+	order by dt.ega_stable_id, email
+) dt
+inner join (
+	select distinct a_dac.stable_id,
+		a_c.email, 
+		concat(a_c.first_name,' ', a_c.last_name) as name,
+		a_c.telephone_number as phone, 
+		a_c.contact_id,
+		a_dc.primary_contact
+	from fdw_audit.dac a_dac
+	inner join fdw_audit.dac_contact a_dc on a_dc.dac_id=a_dac.dac_id
+	inner join fdw_audit.contact a_c on a_c.contact_id=a_dc.contact_id
+	order by a_dac.stable_id, a_c.email
+) audit on audit.stable_id=dt.ega_stable_id
+-- including EGAPRO info (skipping disabled rows!!)
+inner join fdw_egapro.dac_contact_table dac_con ON dac_con.dac_id=dt.id and dac_con.disabled_flag=false
+inner join fdw_egapro.contact_table cont ON cont.id=dac_con.contact_id
+group by dt.ega_stable_id
+order by dt.ega_stable_id;
 ```
 <a name="using-loops"></a>
 ## Using loops
