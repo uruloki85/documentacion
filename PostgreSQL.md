@@ -166,6 +166,10 @@ sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```sql
 CREATE EXTENSION postgres_fdw;
 ```
+* It might be required to grant privileges:
+```
+GRANT USAGE ON FOREIGN DATA WRAPPER postgres_fdw TO microaccounts_dev;
+```
 * Create a foreign server object, using CREATE SERVER, to represent each remote database you want to connect to. Specify connection information, except user and password, as options of the server object.
 ```sql
 CREATE SERVER erapro_server FOREIGN DATA WRAPPER postgres_fdw OPTIONS (host 'localhost', dbname 'erapro', port '4567');
