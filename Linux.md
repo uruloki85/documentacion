@@ -1,14 +1,24 @@
 # Table of contents
 1. [Copy via SSH](#copy-via-ssh)
 1. [Change permissions on files](#chmod)
+1. [Find all files containing a string](#find-content-in-files)
+1. [egrep](#egrep)
+1. [Run a process already started in background](#run-process-started-background)
+1. [curl](#curl)
+    1. [Send a file](#curl-send-file)
+    1. [Performance](#curl-performance)
+1. [netstat](#netstat)
+1. [JSON pretty print](#json-pretty-print)
+1. [Create a Desktop icon](#desktop-icon)
+1. [Create a link to an app](#link-to-app)
 
 <a name="copy-via-ssh"></a>
-## Copy via SSH
+# Copy via SSH
 ```
 scp your_username@remotehost.edu:foobar.txt /some/local/directory
 ```
 <a name="chmod"></a>
-## Change permissions on files
+# Change permissions on files
 ```
 chmod u=rwx,g=rx,o=r filename
 ```
@@ -16,7 +26,8 @@ chmod u=rwx,g=rx,o=r filename
 * <code>g</code>: group
 * <code>o</code>: other
 
-## Find all files containing a string
+<a name="find-content-in-files"></a>
+# Find all files containing a string
 ```
 grep -rnw '/path/to/somewhere/' -e "pattern"
 ```
@@ -39,33 +50,35 @@ Just like exclude file it's possible to exclude/include directories through <cod
 ```
 grep --exclude-dir={dir1,dir2,*.dst} -rnw '/path/to/somewhere/' -e "pattern"
 ```
-## egrep
+<a name="egrep"></a>
+# egrep
 ```
 egrep -o 'X-CLIENT-IP-ADDRESS=\[[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\]' all_grep_results | egrep -o '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | sort | uniq
 ```
 * <code>-o</code> just return the string that matches the pattern
 
-## Run a process already started in background
+<a name="run-process-started-background"></a>
+# Run a process already started in background
 If you run a process and later you realize that it will last very long, you can send it to execute in background although it's already running:
-### Way 1
+## Way 1
 * Ctrl + Z: sends the process to background but stopped
 * <code>fg</code>: the process continues execution
 * <code>disown</code>: the process won't be killed although you close the session. You can't see the command's output anymore.
 
-### Way 2 (you must forsee that you might need to dettach a process)
+## Way 2 (you must forsee that you might need to dettach a process)
 * Run <code>screen</code>: you will enter screen.
 * Run the process.
 * Ctrl + AD: dettaches the process using <code>screen</code> (linux command). It keeps running in background.
 * <code>screen -r</code>: to recover it. You will see the command's output.
 * <code>screen -D -R screen_name</code>: to recover a screen which is attached somewhere (it dettaches the screen from that other place).
 
-### Way 3
+## Way 3
 With <code>nohup</code> the process runs in the background from the beginning of its execution:
 ```
 nohup the_script &
 ```
-
-## curl
+<a name="curl"></a>
+# curl
 Per enviar requests:
 ```
 curl -X PUT --cookie "ega.services.session.id=1" -d level=INFO localhost:9400/logs
@@ -85,19 +98,21 @@ curl -H "Authorization: 3" localhost:8086/submitter/v1/notifications
 - **-i**: mostra les capceleres de la resposta
 - **-v**: mode verbose (info. tant de la request com de la response)
 
-### Send a file
+<a name="curl-send-file"></a>
+## Send a file
 ```
 curl -X POST -F data=@/path/to/file/name.txt localhost:8086/submitter/v1/submissions/{id}/runs/sequencing/csv
 ```
 - **-F**: to emulate a form.
 - **@**: prefix the file with **@** to attach it in the post as a file upload.
 
-### Performance
+<a name="curl-performance"></a>
+## Performance
 ```
 curl -w %{time_starttransfer}\\n%{time_total}\\n -o /dev/null -s -X GET "localhost:9700/archiveservice/v1/users/123/files?sourceType=EBI_INBOX&limit=0"
 ```
-
-## netstat
+<a name="netstat"></a>
+# netstat
 Proporciona informació dels **ports ocupats**.
 
 Amb l'opció <code>-tapen</code> donarà informació sobre el procés (pid i nom) concret que està utilitzant cada port.
@@ -106,8 +121,8 @@ Així, si volem saber quina app està utilitzant un port determinat, hem d'execu
 ```
 sudo netstat -tapen | grep ":9400"
 ```
-
-## JSON pretty print
+<a name="json-pretty-print"></a>
+# JSON pretty print
 Instal·lar la llibreria *yajl* que inclou les eines *json_reformat* i *json_verify*:
 ```
 echo '{"b":2, "a":1}' | json_reformat
@@ -119,13 +134,14 @@ Imprimirà el següent:
     "a": 1
 }
 ```
-## Create a Desktop icon
+<a name="desktop-icon"></a>
+# Create a Desktop icon
 Open a terminal and type:
 ```
 gnome-desktop-item-edit --create-new ~/Desktop
 ```
-
-## Create a link to an app
+<a name="link-to-app"></a>
+# Create a link to an app
 Open a terminal and type:
 ```
 cd /usr/local/bin
