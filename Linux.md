@@ -65,7 +65,7 @@ If you run a process and later you realize that it will last very long, you can 
 * <code>fg</code>: the process continues execution
 * <code>disown</code>: the process won't be killed although you close the session. You can't see the command's output anymore.
 
-## Way 2: sceen 
+## Way 2: screen 
 You must forsee that you might need to dettach a process.
 * Run <code>screen</code>: you will enter screen.
 * Run the process.
