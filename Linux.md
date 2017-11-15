@@ -1,10 +1,20 @@
-# Linux
-Informació d'interès.
+# Table of contents
+1. [Copy via SSH](#copy-via-ssh)
+1. [Change permissions on files](#chmod)
 
+<a name="copy-via-ssh"></a>
 ## Copy via SSH
 ```
 scp your_username@remotehost.edu:foobar.txt /some/local/directory
 ```
+<a name="chmod"></a>
+## Change permissions on files
+```
+chmod u=rwx,g=rx,o=r filename
+```
+* <code>u</code>: user
+* <code>g</code>: group
+* <code>o</code>: other
 
 ## Find all files containing a string
 ```
