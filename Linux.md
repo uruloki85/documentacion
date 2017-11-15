@@ -3,7 +3,7 @@
 1. [Change permissions on files](#chmod)
 1. [Find all files containing a string](#find-content-in-files)
 1. [egrep](#egrep)
-1. [Run a process already started in background](#run-process-started-background)
+1. [Running a process in background](#run-process-in-background)
 1. [curl](#curl)
     1. [Send a file](#curl-send-file)
     1. [Performance](#curl-performance)
@@ -58,21 +58,23 @@ egrep -o 'X-CLIENT-IP-ADDRESS=\[[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\]' all_grep_resul
 * <code>-o</code> just return the string that matches the pattern
 
 <a name="run-process-started-background"></a>
-# Run a process already started in background
+# Running a process in background
+## Way 1: the process is already running
 If you run a process and later you realize that it will last very long, you can send it to execute in background although it's already running:
-## Way 1
 * Ctrl + Z: sends the process to background but stopped
 * <code>fg</code>: the process continues execution
 * <code>disown</code>: the process won't be killed although you close the session. You can't see the command's output anymore.
 
-## Way 2 (you must forsee that you might need to dettach a process)
+## Way 2: sceen 
+You must forsee that you might need to dettach a process.
 * Run <code>screen</code>: you will enter screen.
 * Run the process.
 * Ctrl + AD: dettaches the process using <code>screen</code> (linux command). It keeps running in background.
 * <code>screen -r</code>: to recover it. You will see the command's output.
 * <code>screen -D -R screen_name</code>: to recover a screen which is attached somewhere (it dettaches the screen from that other place).
 
-## Way 3
+## Way 3: nohup
+You must forsee that you might need to dettach a process.
 With <code>nohup</code> the process runs in the background from the beginning of its execution:
 ```
 nohup the_script &
