@@ -57,7 +57,7 @@ egrep -o 'X-CLIENT-IP-ADDRESS=\[[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+\]' all_grep_resul
 ```
 * <code>-o</code> just return the string that matches the pattern
 
-<a name="run-process-started-background"></a>
+<a name="run-process-in-background"></a>
 # Running a process in background
 ## Way 1: the process is already running
 If you run a process and later you realize that it will last very long, you can send it to execute in background although it's already running:
