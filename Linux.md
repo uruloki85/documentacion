@@ -163,10 +163,7 @@ Upload: 346.88 Mbit/s
 # JSON pretty print
 Instal·lar la llibreria *yajl* que inclou les eines *json_reformat* i *json_verify*:
 ```
-echo '{"b":2, "a":1}' | json_reformat
-```
-Imprimirà el següent:
-```json
+> echo '{"b":2, "a":1}' | json_reformat
 {
     "b": 2,
     "a": 1
