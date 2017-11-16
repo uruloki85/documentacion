@@ -123,6 +123,37 @@ Així, si volem saber quina app està utilitzant un port determinat, hem d'execu
 ```
 sudo netstat -tapen | grep ":9400"
 ```
+<a name="check-performance"></a>
+# Check performance
+## USB
+1. Write a file (e.g. 10 GB) in the device.
+1. Clear cache.
+1. Read the file from the device.
+```
+> dd if=/dev/zero of=./largefile bs=1M count=10000
+10000+0 records in
+10000+0 records out
+10485760000 bytes (10 GB, 9,8 GiB) copied, 100,449 s, 104 MB/s
+> sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches"
+> dd if=./largefile of=/dev/null bs=1M
+10000+0 records in
+10000+0 records out
+10485760000 bytes (10 GB, 9,8 GiB) copied, 109,784 s, 95,5 MB/s
+```
+## Network
+```
+> speedtest-cli
+Retrieving speedtest.net configuration...
+Retrieving speedtest.net server list...
+Testing from Consorci de Serveis Universitaris de Catalunya (84.88.66.194)...
+Selecting best server based on latency...
+Hosted by Eurona Wireless Telecom S.A. (Barcelona) [0.97 km]: 4.617 ms
+Testing download speed........................................
+Download: 900.13 Mbit/s
+Testing upload speed..................................................
+Upload: 346.88 Mbit/s
+```
+
 <a name="json-pretty-print"></a>
 # JSON pretty print
 Instal·lar la llibreria *yajl* que inclou les eines *json_reformat* i *json_verify*:
@@ -136,12 +167,6 @@ Imprimirà el següent:
     "a": 1
 }
 ```
-<a name="desktop-icon"></a>
-# Create a Desktop icon
-Open a terminal and type:
-```
-gnome-desktop-item-edit --create-new ~/Desktop
-```
 <a name="link-to-app"></a>
 # Create a link to an app
 Open a terminal and type:
@@ -150,4 +175,9 @@ cd /usr/local/bin
 sudo ln -s ../squirrel-sql-3.2.1/squirrel-sql.sh squirrel-sql
 ```
 After that, you can run the program typing <code>squirrel-sql</code>
-
+<a name="desktop-icon"></a>
+# Create a Desktop icon
+Open a terminal and type:
+```
+gnome-desktop-item-edit --create-new ~/Desktop
+```
