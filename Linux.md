@@ -8,8 +8,10 @@
     1. [Send a file](#curl-send-file)
     1. [Performance](#curl-performance)
 1. [netstat](#netstat)
-1. [JSON pretty print](#json-pretty-print)
 1. [Test performance](#test-performance)
+    1. [USB](#performance-usb)
+    1. [Network](#performance-network)
+1. [JSON pretty print](#json-pretty-print)
 1. [Create a link to an app](#link-to-app)
 1. [Create a Desktop icon](#desktop-icon)
 
@@ -126,6 +128,7 @@ sudo netstat -tapen | grep ":9400"
 ```
 <a name="test-performance"></a>
 # Test performance
+<a name="performance-usb"></a>
 ## USB
 1. Write a file (e.g. 10 GB) in the device.
 1. Clear cache.
@@ -141,6 +144,7 @@ sudo netstat -tapen | grep ":9400"
 10000+0 records out
 10485760000 bytes (10 GB, 9,8 GiB) copied, 109,784 s, 95,5 MB/s
 ```
+<a name="performance-network"></a>
 ## Network
 ```
 > speedtest-cli
