@@ -9,8 +9,9 @@
     1. [Performance](#curl-performance)
 1. [netstat](#netstat)
 1. [JSON pretty print](#json-pretty-print)
-1. [Create a Desktop icon](#desktop-icon)
+1. [Test performance](#test-performance)
 1. [Create a link to an app](#link-to-app)
+1. [Create a Desktop icon](#desktop-icon)
 
 <a name="copy-via-ssh"></a>
 # Copy via SSH
@@ -123,8 +124,8 @@ Així, si volem saber quina app està utilitzant un port determinat, hem d'execu
 ```
 sudo netstat -tapen | grep ":9400"
 ```
-<a name="check-performance"></a>
-# Check performance
+<a name="test-performance"></a>
+# Test performance
 ## USB
 1. Write a file (e.g. 10 GB) in the device.
 1. Clear cache.
