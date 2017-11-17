@@ -91,7 +91,8 @@ String statuses = statusList.stream()
                             .collect(Collectors.joining(","));
 ```
 <a name="guava-lib"></a>
-# Guava library (deprecated with Java 8)
+# Guava library
+<b>NOTE: Since Java 8, this can be done using lambda expressions.</b>
 * Extract one field from a list without looping over it:
 ```java
 // TODO replace with lambda expression after upgrading to java 8
