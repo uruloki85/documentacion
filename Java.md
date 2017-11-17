@@ -1,5 +1,9 @@
-# Java
-## Deserialize response from spring-data-rest
+# Table of contents
+1. [Deserialize response from spring-data-rest(#deserialize-response)
+1. [Lambda expressions](#lambda-expressions)
+1. [Guava library](#guava-lib)
+<a name="deserialize-response"></a>
+# Deserialize response from spring-data-rest
 Response format is:
 ```json
 {
@@ -72,7 +76,8 @@ try {
   log.error("Error while parsing response to JSON", e);
 }
 ```
-### Lambda expressions (Java 8)
+<a name="lambda-expressions"></a>
+# Lambda expressions (Java 8)
 * Extract one field from a list without looping over it:
 ```java
 List<String> filenames = fileDataList.stream()
@@ -85,8 +90,8 @@ String statuses = statusList.stream()
                             .map(status -> status.getStatus())
                             .collect(Collectors.joining(","));
 ```
-
-### Guava library
+<a name="guava-lib"></a>
+# Guava library
 * Extract one field from a list without looping over it:
 ```java
 // TODO replace with lambda expression after upgrading to java 8
