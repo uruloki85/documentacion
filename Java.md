@@ -1,5 +1,5 @@
 # Table of contents
-1. [Deserialize response from spring-data-rest(#deserialize-response)
+1. [Deserialize response from spring-data-rest](#deserialize-response)
 1. [Lambda expressions](#lambda-expressions)
 1. [Guava library](#guava-lib)
 <a name="deserialize-response"></a>
@@ -91,7 +91,7 @@ String statuses = statusList.stream()
                             .collect(Collectors.joining(","));
 ```
 <a name="guava-lib"></a>
-# Guava library
+# Guava library (deprecated with Java 8)
 * Extract one field from a list without looping over it:
 ```java
 // TODO replace with lambda expression after upgrading to java 8
