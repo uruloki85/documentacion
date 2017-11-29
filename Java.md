@@ -1,9 +1,9 @@
 # Table of contents
-1. [Deserialize response from spring-data-rest](#deserialize-response)
+1. [Deserialize JSON response](#deserialize-response)
 1. [Lambda expressions](#lambda-expressions)
 1. [Guava library](#guava-lib)
 <a name="deserialize-response"></a>
-# Deserialize response from spring-data-rest
+# Deserialize JSON response
 Response format is:
 ```json
 {
