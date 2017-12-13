@@ -1,5 +1,9 @@
 [MongoDB](http://docs.mongodb.org/manual/)
 =======
+# Connect to the mongo server with credentials
+```bash
+mongo --host localhost --port 27025 --authenticationDatabase config_dev --authenticationMechanism SCRAM-SHA-1 -u config_dev_user -p
+```
 # Dump
 Binary dump:
 ```bash
