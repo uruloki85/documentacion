@@ -18,6 +18,7 @@
 	1. [FDW to a Mysql DB](#fdw-to-mysql)
 1. [Postgres SQL](#postgres-sql)
 	1. [Pattern matching](#pattern-matching)
+		1. [Replacement](#pattern-replacement)
 	1. [Filter by date](#filter-by-date)
 	1. [Using XPATH and unnest()](#xpath-unnest)
 	1. [Sorting in combination with unnest](#sorting-with-unnest)
@@ -222,6 +223,37 @@ SERVER mysql_server OPTIONS (dbname 'remote_mysql_database_name', table_name 're
 SELECT array_length(regexp_matches(d.stable_id,'^EGAD00001\d+'), 1) > 0 FROM dataset d;
 ```
 Returns true or false if the stable id matches or not the pattern.
+<a name="pattern-replacement"></a>
+### Replacement
+```sql
+select dat.stable_id, 
+	array_to_json(
+	ARRAY(
+		SELECT DISTINCT *
+		from
+		unnest(
+			string_to_array( 
+				trim(both ',' from 
+					regexp_replace(
+						trim(both ' ' from regexp_replace(dat.technology, '\s*(,|;)\s*', ',', 'g'))
+					, ',+', ',', 'g')
+				)
+			, ',')
+		) --closing unnest
+	) --closing array
+) --closing array_to_json
+as technology_json
+from stg_ega_website_prod.dataset dat
+```
+1. Replaces , and ; with , for all occurences (g option).
+1. Replaces multiple , with just one.
+1. Removes leading and trailing ,
+1. Converts to an array
+1. Unnests the array
+1. Removes duplicates
+1. Converts to array
+1. Converts to json
+
 
 <a name="filter-by-date"></a>
 ## Filter by date
