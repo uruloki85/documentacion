@@ -159,7 +159,9 @@ sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```
 <a name="installation-path"></a>
 ## Installation path
-* postgres.conf and pg_hba.conf: <code>/etc/postgresql/9.1/main/</code>
+* Configuration files: <code>/etc/postgresql/9.1/main/</code>
+** postgres.conf: to change the port, the folder where the data is stored, etc.
+** pg_hba.conf: network access to the server
 * Binaries: <code>/usr/lib/postgresql/9.3/</code>
 <a name="about-server"></a>
 ## About Postgres server
