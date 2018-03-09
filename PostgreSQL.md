@@ -13,6 +13,7 @@
 	1. [Databases size](#db-size)
 	1. [To determine PostgreSQL port](#postgres-port)
 	1. [Installation path](#installation-path)
+	1. [Check server status](#server-status)
 1. [Foreign Data Wrappers](#fdw)
 	1. [FDW to a Postgres DB](#fdw-to-postgres)
 	1. [FDW to a Mysql DB](#fdw-to-mysql)
@@ -158,7 +159,11 @@ sabela@pc:~$ sudo netstat -plunt | grep postgres
 ## Installation path
 * postgres.conf and pg_hba.conf: <code>/etc/postgresql/9.1/main/</code>
 * Binaries: <code>/usr/lib/postgresql/9.3/</code>
-
+<a name="server-status"></a>
+## Check server status
+```
+service postgresql status
+```
 <a name="fdw"></a>
 # Foreign Data Wrappers 
 <a name="fdw-to-postgres"></a>
