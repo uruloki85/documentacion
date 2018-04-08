@@ -32,12 +32,15 @@ module.exports = {
 Another way of exporting is using variables:
 ```
 let specialty = '';
-function isVegetarian() {
-}; 
-function isLowSodium() {
-}; 
+function isVegetarian() {}; 
+function isLowSodium() {}; 
 
 export { specialty, isVegetarian };
+```
+or
+```
+export let specialty = '';
+export function isVegetarian() {}; 
 ```
 * Importing 
 To import this in another file:
