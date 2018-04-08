@@ -68,7 +68,7 @@ function isLowSodium() {};
 export { specialty, isVegetarian };
 ```
 or
-```
+```javascript
 export let specialty = '';
 export function isVegetarian() {}; 
 ```
