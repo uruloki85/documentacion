@@ -116,6 +116,27 @@ curl -X POST -F data=@/path/to/file/name.txt localhost:8086/submitter/v1/submiss
 ```
 curl -w %{time_starttransfer}\\n%{time_total}\\n -o /dev/null -s -X GET "localhost:9700/archiveservice/v1/users/123/files?sourceType=EBI_INBOX&limit=0"
 ```
+or use a external file to specify the output format:
+```
+curl -X GET -H "X-Token: XXX" -w "@curl_format.txt" -o /dev/null -s "localhost:8086/submitterportal/v1/files?sourceType=EBI_INBOX&limit=0&skip=0"
+```
+* `-w "@curl_format.txt"`: tells cURL to use our format file
+* `-o /dev/null`: redirects the output of the request to /dev/null
+* `-s`: tells cURL not to show a progress meter
+* `localhost:8086/submitterportal/v1/files?sourceType=EBI_INBOX&limit=0&skip=0`: is the URL we are requesting
+
+Sample output:
+```
+  time_namemelookup:  0,004
+       time_connect:  0,005
+    time_appconnect:  0,145
+   time_pretransfer:  0,145
+      time_redirect:  0,000
+ time_starttransfer:  4,364
+                    ----------
+         time_total:  5,950
+```
+
 <a name="netstat"></a>
 # netstat
 Proporciona informació dels **ports ocupats**.
