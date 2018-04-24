@@ -1,9 +1,15 @@
 [MongoDB](http://docs.mongodb.org/manual/)
 =======
 # Connect to the mongo server with credentials
+* Short form:
 ```bash
-mongo --host localhost --port 27025 --authenticationDatabase config_dev --authenticationMechanism SCRAM-SHA-1 -u config_dev_user -p
+mongo sql12.local:27017/session -u session_user -p --authenticationMechanism=SCRAM-SHA-1
 ```
+* Long form:
+```bash
+mongo --host sql12.local --port 27017 -u session_user -p --authenticationMechanism=SCRAM-SHA-1 --authenticationDatabase=session session
+```
+* `--authenticationDatabase=session`: not required, it defaults to dbname if provided.
 # Dump
 Binary dump:
 ```bash
