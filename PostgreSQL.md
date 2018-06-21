@@ -137,7 +137,7 @@ where dataset_stable_id='XXXX') to stdin with csv delimiter ';'" ega_beacon_dev 
 <a name="running-queries"></a>
 ## Listing running queries
 ```sql
-SELECT pid, datid, datname, state, xact_start, now()-xact_start as duration, query 
+SELECT pid, datname, application_name, state, xact_start, now()-xact_start as duration, query 
 FROM pg_stat_activity 
 WHERE usename='microaccounts_dev' and state='active';
 ```
