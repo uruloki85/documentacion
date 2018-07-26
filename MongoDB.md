@@ -21,6 +21,12 @@ sdelatorre@app01:~> /iso/tmp/mongodump --host sql01 --db auth --collection userM
 ```
 mongorestore --collection userManagementModel --db auth sql01_auth_user_management_model_dump.bson
 ```
+# Export data in CSV or JSON format
+```
+mongoexport --host localhost --port 27020 --db database_name --collection documentModel --query '{_id:"XXXX"}' --fields "_id,alias,status" --type csv > file_output.csv
+```
+* Default value for `--type`is json
+
 # Inside mongo
 * List all DBs available
 ```json
