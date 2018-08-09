@@ -34,8 +34,8 @@
 ```
 sabela@pc:~$ sudo -i -u postgres
 ```
-Use <code>psql</code> to get a Postgres prompt.
-Use <code>\q</code> to exit this promp.
+Use `psql` to get a Postgres prompt.
+Use `\q` to exit this promp.
 
 * Create a new role:
 ```
@@ -80,35 +80,37 @@ psql -h host_name -p 5432 -d database_name -U username -W -c "COPY ( SELECT ... 
 ## Doing dumps
 <a name="doing-custom-format"></a>
 ### Custom format
-<code>pg_dump</code>
+`pg_dump`
 ```
 sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc -s > sql01_crg_erapro_schema.backup
 ```
-- <code>-h/--host</code>: host name of the machine where the postgres server is running.
-- <code>-p/--port</code>: postgres server port.
-- <code>-d/--dbname</code>: name of the database to connect to.
-- <code>-U/--username</code>: username to connect as.
-- <code>-W/--password</code>: will prompt for the password.
-- <code>-Fc/--format=c</code>: file format will be custom (c).
-- <code>-s/--schema-only</code>: dump only the schema.
-- <code>-a/--data-only</code>: dump only the data.
-- <code>-n/--schema</code>: dump only this schema. Multiple schemas can be selected by writing multiple <code>-n</code> switches.
+- `-h/--host`: host name of the machine where the postgres server is running.
+- `-p/--port`: postgres server port.
+- `-d/--dbname`: name of the database to connect to.
+- `-U/--username`: username to connect as.
+- `-W/--password`: will prompt for the password.
+- `-Fc/--format=c`: file format will be custom (c).
+- `-s/--schema-only`: dump only the schema.
+- `-a/--data-only`: dump only the data.
+- `-n/--schema`: dump only this schema. Multiple schemas can be selected by writing multiple `-n` switches.
+- `-t/--table`: dump only this table (_table_ also includes views, materialized views, sequences, and foreign tables). Multiple tables can be selected by writing multiple `-t` switches.
 
 <a name="loading-dumps"></a>
 ## Loading dumps
 <a name="loading-custom-format"></a>
 ### Custom format
-<code>pg_restore</code>
+`pg_restore`
 ```
 sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_dev -W -Fc -a < sql01_crg_erapro_schema.backup
 ```
-- <code>-O/--no-owner</code>: Do not output commands to set ownership of objects to match the original database (mandatory if users are not the same).
-- <code>--disable-triggers</code>: disable triggers while loading the dump.
-- <code>-c/--clean</code>: clean (drop) database objects before recreating them.
+Same options as in `pg_dump` can be used plus:
+- `-O/--no-owner`: Do not output commands to set ownership of objects to match the original database (mandatory if users are not the same).
+- `--disable-triggers`: disable triggers while loading the dump.
+- `-c/--clean`: clean (drop) database objects before recreating them.
 
 <a name="sql-format"></a>
 ### SQL format
-<code>psql</code>
+`psql`
 ```
 sabela@pc:~$ psql -h host -d database_name -U user -f file.sql -W
 ```
@@ -159,10 +161,10 @@ sabela@pc:~$ sudo netstat -plunt | grep postgres
 ```
 <a name="installation-path"></a>
 ## Installation path
-* Configuration files: <code>/etc/postgresql/9.1/main/</code>
+* Configuration files: `/etc/postgresql/9.1/main/`
 	* postgres.conf: to change the port, the folder where the data is stored, etc.
 	* pg_hba.conf: network access to the server
-* Binaries: <code>/usr/lib/postgresql/9.3/</code>
+* Binaries: `/usr/lib/postgresql/9.3/`
 <a name="about-server"></a>
 ## About Postgres server
 <a name="server-status"></a>
