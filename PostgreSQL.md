@@ -93,7 +93,9 @@ sabela@pc:~$ pg_dump -h localhost -p 5432 -d crg_erapro -U microaccounts -W -Fc 
 - `-s/--schema-only`: dump only the schema.
 - `-a/--data-only`: dump only the data.
 - `-n/--schema`: dump only this schema. Multiple schemas can be selected by writing multiple `-n` switches.
+- `-N/--exclude-schema`: skip this schema.
 - `-t/--table`: dump only this table (_table_ also includes views, materialized views, sequences, and foreign tables). Multiple tables can be selected by writing multiple `-t` switches.
+- `-T/--exclude-table`: skip this table.
 
 <a name="loading-dumps"></a>
 ## Loading dumps
