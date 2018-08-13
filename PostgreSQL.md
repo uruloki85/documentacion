@@ -109,6 +109,7 @@ Same options as in `pg_dump` can be used plus:
 - `-O/--no-owner`: Do not output commands to set ownership of objects to match the original database (mandatory if users are not the same).
 - `--disable-triggers`: disable triggers while loading the dump.
 	- Requires using option `-S/--superuser` with the superuser to be used when disabling triggers.
+	- Only valid for a `--data-only` restore
 - `-c/--clean`: clean (drop) database objects before recreating them (only when restoring the schema).
 
 <a name="sql-format"></a>
