@@ -108,7 +108,8 @@ sabela@pc:~$ pg_restore -h localhost -p 5432 -d crg_erapro_dev -U microaccounts_
 Same options as in `pg_dump` can be used plus:
 - `-O/--no-owner`: Do not output commands to set ownership of objects to match the original database (mandatory if users are not the same).
 - `--disable-triggers`: disable triggers while loading the dump.
-- `-c/--clean`: clean (drop) database objects before recreating them.
+	- Requires using option `-S/--superuser` with the superuser to be used when disabling triggers.
+- `-c/--clean`: clean (drop) database objects before recreating them (only when restoring the schema).
 
 <a name="sql-format"></a>
 ### SQL format
