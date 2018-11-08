@@ -26,6 +26,7 @@ mongorestore --collection userManagementModel --db auth sql01_auth_user_manageme
 mongoexport --host localhost --port 27020 --db database_name --collection documentModel --query '{_id:"XXXX"}' --fields "_id,alias,status" --type csv > file_output.csv
 ```
 * Default value for `--type` is json.
+  * Use `--pretty` for pretty print
 * If csv output chosen, either `--fields` or `--fieldFile` is mandatory.
 
 # Inside mongo
