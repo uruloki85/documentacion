@@ -13,9 +13,11 @@ mongo --host sql12.local --port 27017 -u session_user -p --authenticationMechani
 # Dump
 Binary dump:
 ```bash
-sdelatorre@frontendtest01:~> /iso/tmp/mongodump --host devil.local --db submitter_dev --collection submissionModel --query '{"submitterId":"ega-box-211"}' --out submissions_ega-box-211_dump
+@frontendtest01:~> /iso/tmp/mongodump --host devil.local --db submitter_dev --collection submissionModel \
+			--query '{"submitterId":"ega-box-211"}' --out submissions_ega-box-211_dump
 
-sdelatorre@app01:~> /iso/tmp/mongodump --host sql01 --db auth --collection userManagementModel --out sql01_auth_user_management_model_dump
+@app01:~> /iso/tmp/mongodump --host sql01 --db auth --collection userManagementModel \
+		--out sql01_auth_user_management_model_dump
 ```
 # Load a dump
 ```
