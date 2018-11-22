@@ -212,3 +212,16 @@ Resulting data:
 ```json
 db.users.findOne({"username" : {$regex : ".*son.*"}})
 ```
+
+### Count elements in an array
+```json
+db.document.aggregate(
+	{
+		$match : {_id: "the_object_id")} 
+	},
+	{
+		$project: { count: { $size:"$name_of_the_array" } }
+	}
+)
+```
+* `$match`: write here a condition if you want to count only the elements of a specific document in a collection.
