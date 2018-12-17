@@ -213,7 +213,7 @@ Resulting data:
 db.users.findOne({"username" : {$regex : ".*son.*"}})
 ```
 
-### Count elements in an array
+## Count elements in an array
 ```
 db.document.aggregate(
 	{
@@ -225,3 +225,34 @@ db.document.aggregate(
 )
 ```
 * `$match`: write here a condition if you want to count only the elements of a specific document in a collection.
+
+## Kind of "join" query
+```
+db.datasetModel.find({_id:ObjectId("5bfff0b38d96297f25079c4e")}).forEach(
+	function (dataset) { 
+		dataset.runsReferences.forEach(function (run_id) {
+			var run = new Object();
+			if (!run_id.startsWith('ERR')) {
+				run = db.runModel.find( { "_id": ObjectId(run_id) }, {alias:1, submissionId: 1, status:1} ).toArray();
+			} else {
+				run = [{ _id: run_id, submissionId:"unknown", status: "SUBMITTED"}]
+			}
+			var dataset_run = { 
+				datasetId : dataset._id, 
+				run:run
+			};
+			db.queries_dataset_runs.insert(dataset_run);
+		});
+	}
+);
+```
+* For each of the datasets (one in this example)
+  * For each of its runs
+    * If the ID != ERR, get the run and only return specific fields
+    * Else, return the ID and some hardcoded values
+    * Build the dataset_run object with these values
+    * Save this object to a new collection
+  
+In this new collection we'll find the information of the runs linked to this dataset.
+  
+  
