@@ -18,6 +18,7 @@
 		1. [Restart](#restart-server)
 1. [Foreign Data Wrappers](#fdw)
 	1. [FDW to a Postgres DB](#fdw-to-postgres)
+		1. [Change the FDW server of an existing foreign table](#fdw-change-server)
 	1. [FDW to a Mysql DB](#fdw-to-mysql)
 1. [Postgres SQL](#postgres-sql)
 	1. [Pattern matching](#pattern-matching)
@@ -212,6 +213,20 @@ SERVER erapro_server OPTIONS (schema_name 'public');
 * Grant privileges
 ```sql
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO microaccounts;
+```
+<a name="fdw-change-server"></a>
+### Change the FDW server of an existing foreign table
+There is no alter command to change the server in a foreign table so this is a workaround to avoid dropping it:
+```
+-- Find the oid of the foreign server
+select oid, * from pg_foreign_server;--2649844
+-- Find the oid of the foreign table in pg_class
+select oid, * from pg_class where relkind = 'f' and relname like '%dataset_table%';--1247646
+-- Find the oid of the original server
+select * from pg_foreign_table where ftrelid=1247646;
+-- Update the ftserver reference in pg_foreign_table
+-- In the where clause, use the oid of the original server and the oid of the foreign table
+update pg_foreign_table set ftserver = 2649844 where ftserver=126515 and ftrelid = 1247646;
 ```
 <a name="fdw-to-mysql"></a>
 ## FDW to a Mysql DB
