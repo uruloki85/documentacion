@@ -217,7 +217,7 @@ GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO microaccounts;
 <a name="fdw-change-server"></a>
 ### Change the FDW server of an existing foreign table
 There is no alter command to change the server in a foreign table so this is a workaround to avoid dropping it:
-```
+```sql
 -- Find the oid of the foreign server
 select oid, * from pg_foreign_server;--2649844
 -- Find the oid of the foreign table in pg_class
