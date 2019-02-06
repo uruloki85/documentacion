@@ -31,6 +31,7 @@ mongoexport --host localhost --port 27020 --db database_name --collection docume
 * Default value for `--type` is json.
   * Use `--pretty` for pretty print
 * If csv output chosen, either `--fields` or `--fieldFile` is mandatory.
+* Use `--sort '{submissionId: 1}'` for sorting the result
 
 # Inside mongo
 * List all DBs available
@@ -254,5 +255,30 @@ db.datasetModel.find({_id:ObjectId("5bfff0b38d96297f25079c4e")}).forEach(
     * Save this object to a new collection
   
 In this new collection we'll find the information of the runs linked to this dataset.
-  
+
+## Using $project
+The following query uses `$project` to 
+* return those documents matching the condition (`$match`)
+* rename some fields (`"filename2": ...`), and 
+* return the 1st and 2nd elements of an array (`$arrayElemAt`).
+```
+db.runModel.aggregate(
+	{ $match: { submitterId:"ega-box-920" } }, 
+	{ $project: { 
+		_id:0, 
+		"sampleAlias": 1, 
+		"filename1": { $arrayElemAt : ["$files.fileName", 0] }, 
+		"filename2": { $arrayElemAt : ["$files.fileName", 1] } 
+	} }
+).pretty()
+```
+Output:
+```
+{
+	"sampleAlias" : "some sample alias",
+	"filename1" : "this is the first file.fastq.gz",
+	"filename2" : "this is the second file.gz"
+}
+```
+
   
