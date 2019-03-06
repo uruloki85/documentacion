@@ -71,6 +71,7 @@ If you run a process and later you realize that it will last very long, you can 
 ## Way 2: screen 
 You must forsee that you might need to dettach a process.
 * Run <code>screen</code>: you will enter screen.
+    * Use `-S` to name the session: `screen -S running_update`
 * Run the process.
 * Ctrl + AD: dettaches the process using <code>screen</code> (linux command). It keeps running in background.
 * <code>screen -r</code>: to recover it. You will see the command's output.
