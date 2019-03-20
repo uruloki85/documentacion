@@ -24,4 +24,4 @@
 
   str_to_title(c("a simple test", "Another-test"))
   ```
-  Output: [1] "A Simple Test" "Another-Test" 
+  [1] "A Simple Test" "Another-Test" 
