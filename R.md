@@ -1,7 +1,12 @@
 # R
 
+1. [Working with data frames](#data-frames)
+1. [Working with strings](#strings)
+1. [Working with lists](#lists)
+
+<a name="data-frames"></a>
 ## Working with data frames
-* Total number of rows
+* Number of rows
   ```r
   nrow(data) # 1920
   ```
@@ -16,7 +21,8 @@
   ```r
   data$seniority <- mutate(data, seniority = ifelse(age - seniority < 18, age - 18, seniority))
   ```
-
+  
+<a name="strings"></a>
 ## Working with strings
 * Convert to upper case each of the words in the string
   ```r
@@ -25,3 +31,11 @@
   str_to_title(c("a simple test", "Another-test"))
   ```
   [1] "A Simple Test" "Another-Test" 
+
+<a name="lists"></a>
+## Working with lists
+* Length
+```r
+class(boxplot.stats(data$sick_leave)) # list
+length(boxplot.stats(data$sick_leave)$out) # 473
+```
