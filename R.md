@@ -10,6 +10,13 @@
   ```r
   nrow(data) # 1920
   ```
+* Check columns types:
+```r
+sapply(data,class)
+
+        city          sex   educ_level     job_type    happiness          age    seniority   sick_leave sick_leave_b   work_hours  Cho_initial    Cho_final 
+    "factor"     "factor"     "factor"     "factor"    "numeric"    "integer"    "numeric"    "integer"    "logical"    "numeric"    "numeric"    "numeric" 
+```
 * Filter rows using different columns in the condition using `filter`
   ```r
   library(dplyr)
@@ -29,8 +36,9 @@
   library(stringr)
 
   str_to_title(c("a simple test", "Another-test"))
-  ```
+  
   [1] "A Simple Test" "Another-Test" 
+  ```
 
 <a name="lists"></a>
 ## Working with lists
