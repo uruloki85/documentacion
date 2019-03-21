@@ -47,3 +47,11 @@ sapply(data,class)
 class(boxplot.stats(data$sick_leave)) # list
 length(boxplot.stats(data$sick_leave)$out) # 473
 ```
+## Analysing data
+* Table of fractions
+```r
+taula_finance <- table(finance,classe)
+prop.table(taula_finance)
+# To get in %
+prop.table(taula_finance,margin=1)*100
+```
